@@ -3,111 +3,81 @@ pragma solidity ^0.8.20;
 
 import { SD59x18, sd, convert, UNIT } from "@prb/math/src/SD59x18.sol";
 
-/**
- * @title  SLCML_Contract v2.0
- * @notice 基于 SLCML 五元组形式化模型 <S, O, C, R, A> 的司法可审计智能法律合约
- * @dev    实现了算法1（差分隐私预算动态管理）与算法2（预言机驱动违约归责与司法存证）
- * 以及 Freeze → Challenge → Adjudication 三段式程序正义控制流
- */
+/// @title  SLCML_Contract v2.0
+/// @notice Judicially auditable smart legal contract based on the SLCML quintuple model <S, O, C, R, A>.
+/// @dev    Implements Algorithm 1 (differential privacy budget dynamic management) and
+///         Algorithm 2 (oracle-driven breach attribution with judicial evidence generation),
+///         coupled with a Freeze -> Challenge -> Adjudication three-phase procedural justice control flow.
 contract SLCML_Contract {
 
-    // =========================================================================
-    // Section 1: 数据结构定义 —— 五元组 <S, O, C, R, A>
-    // =========================================================================
-
-    // --- 主体集合 S (Subjects) ---
     struct Subject {
-        address addr;           // 链上地址
-        bytes32 credentialHash; // 链下数字资质凭证哈希锚点（如医疗许可证）
-        uint256 reputation;     // 动态信誉值 R_ep(t)，初始值 100，满分制
-        uint256 callCount;      // 历史调用频次 n，用于指数惩罚计算
+        address addr;
+        bytes32 credentialHash;
+        uint256 reputation;
+        uint256 callCount;
         bool    isRegistered;
     }
 
-    // --- 客体集合 O (Objects) --- 数据资产子集 O_data
     struct DataAsset {
-        bytes32 assetId;        // 资产唯一标识符
-        uint8   sensitivityLevel; // 数据敏感度级别 Level_sens (1-5)
-        uint256 bTotal;         // 初始总隐私预算 B_total
-        uint256 bRem;           // 当前剩余隐私预算 B_rem（随调用单调递减）
-        string  dataRegion;     // 数据存储地理区域（用于出境检验）
+        bytes32 assetId;
+        uint8   sensitivityLevel;
+        uint256 bTotal;
+        uint256 bRem;
+        string  dataRegion;
     }
 
-    // --- 司法审计证据结构 A (Audit) ---
     struct JudicialEvidence {
-        uint256 blockTimestamp;     // 可信区块时间戳
-        uint256 blockNumber;        // 区块高度（防止时间戳操纵）
-        address violatingParty;     // 违约方地址
-        string  violationType;      // 违约类型分类
-        string  clauseId;           // 自然语言法条索引 Index_clause
-        bytes32 evidenceHash;       // Keccak256 证据哈希锚点
-        string  nlFactStatement;    // LLM预编译的自然语言法庭陈述句（含变量槽填充结果）
-        bytes32 oracleDataHash;     // 预言机环境快照哈希（客观真实性保障）
-        uint256 penaltyAmount;      // 实际执行的惩罚金额
+        uint256 blockTimestamp;
+        uint256 blockNumber;
+        address violatingParty;
+        string  violationType;
+        string  clauseId;
+        bytes32 evidenceHash;
+        string  nlFactStatement;
+        bytes32 oracleDataHash;
+        uint256 penaltyAmount;
     }
 
-    // --- 异议申诉记录 ---
     struct AppealRecord {
-        bytes32 evidenceHash;   // 被控方提交的链下申诉证据哈希
+        bytes32 evidenceHash;
         uint256 submitTime;
         bool    isRejected;
     }
 
-    // =========================================================================
-    // Section 2: 状态变量
-    // =========================================================================
-
-    // 主体注册表
     mapping(address => Subject) public subjects;
     Subject public dataOwnerSubject;
     Subject public modelProviderSubject;
 
-    // 数据资产
     DataAsset public dataAsset;
 
-    // 合约资金
-    uint256 public depositBalance; // 质保金余额
+    uint256 public depositBalance;
 
-    // 合规状态机 FSM —— Σ = {Active, RiskWarning, Challenge, Breach, Resolved}
     enum ContractState { Active, RiskWarning, Challenge, Breach, Resolved }
     ContractState public currentState;
 
-    // 挑战期时间控制
     uint256 public challengeStartTime;
     uint256 public constant CHALLENGE_WINDOW = 72 hours;
 
-    // 违约信息暂存（Challenge阶段使用）
     string  private pendingViolationType;
     string  private pendingClauseId;
     bytes32 private pendingOracleHash;
 
-    // 证据日志数组（不可变，追加模式）
     JudicialEvidence[] public evidenceLog;
 
-    // 申诉记录
     AppealRecord public currentAppeal;
     bool public appealSubmitted;
 
-    // 参数常量
     uint256 public constant REPUTATION_INITIAL      = 100;
-    uint256 public constant REPUTATION_PENALTY_STEP = 5;   // 每次边缘违规扣减的信誉分
-    uint256 public constant ALPHA_NUMERATOR         = 1;      // α = 0.1 = 1/10
+    uint256 public constant REPUTATION_PENALTY_STEP = 5;
+    uint256 public constant ALPHA_NUMERATOR         = 1;
     uint256 public constant ALPHA_DENOMINATOR       = 10;
-    // 隐私预算阈值（以 bTotal 的百分比表示，精度 *100 避免浮点）
-    uint256 public constant BUDGET_CRITICAL_PCT    = 10;    // 10%：物理熔断
-    uint256 public constant BUDGET_WARNING_PCT     = 60;    // 60%：指数惩罚区
+    uint256 public constant BUDGET_CRITICAL_PCT    = 10;
+    uint256 public constant BUDGET_WARNING_PCT     = 60;
 
-    // 允许的地理区域白名单（以字符串哈希存储）
     mapping(bytes32 => bool) public allowedRegions;
 
-    // 授权多签伦理委员会地址（用于最终裁决）
     address public ethicsCommittee;
 
-    // =========================================================================
-    // Section 3: 事件定义
-    // =========================================================================
-
-    /// @notice 司法审计日志核心事件 —— 对应 GeneEvi 函数的链上抛出
     event LogJudicialEvidence(
         uint256 indexed blockTimestamp,
         uint256 indexed blockNumber,
@@ -119,15 +89,13 @@ contract SLCML_Contract {
         bytes32 oracleDataHash
     );
 
-    /// @notice 隐私预算状态事件
     event BudgetConsumed(
         address indexed caller,
         uint256 cost,
         uint256 bRemAfter,
-        uint8   pricingZone  // 0=正常, 1=预警指数计费, 2=熔断
+        uint8   pricingZone
     );
 
-    /// @notice 状态机转换事件
     event StateTransition(
         ContractState indexed fromState,
         ContractState indexed toState,
@@ -135,15 +103,10 @@ contract SLCML_Contract {
         uint256 timestamp
     );
 
-    /// @notice 三段式程序正义事件
     event AssetFrozen        (address indexed party, uint256 amount, uint256 timestamp);
     event ChallengeWindowOpen(address indexed party, uint256 deadline);
     event AppealReceived    (address indexed party, bytes32 evidenceHash);
     event PenaltyExecuted   (address indexed party, uint256 amount, bytes32 evidenceHash);
-
-    // =========================================================================
-    // Section 4: 修饰器
-    // =========================================================================
 
     modifier inState(ContractState _state) {
         require(currentState == _state,
@@ -174,21 +137,15 @@ contract SLCML_Contract {
         _;
     }
 
-    // =========================================================================
-    // Section 5: 构造函数
-    // =========================================================================
-
-    /**
-     * @param _dataOwner        医疗数据持有方地址
-     * @param _modelProvider    AI研发机构地址
-     * @param _ethicsCommittee  多签伦理委员会地址
-     * @param _credHash_DO      数据持有方资质凭证哈希
-     * @param _credHash_MP      AI机构资质凭证哈希
-     * @param _assetId          数据资产ID
-     * @param _sensitivityLevel 数据敏感度 1-5
-     * @param _bTotal           初始隐私预算总量（以1e18为单位）
-     * @param _allowedRegion    允许的地理区域标识字符串
-     */
+    /// @param _dataOwner        Address of the medical data holder (Party A)
+    /// @param _modelProvider    Address of the AI research institution (Party B)
+    /// @param _ethicsCommittee  Multi-signature ethics committee address
+    /// @param _credHash_DO      Credential hash of the data owner
+    /// @param _credHash_MP      Credential hash of the model provider
+    /// @param _assetId          Data asset identifier
+    /// @param _sensitivityLevel Data sensitivity level (1-5)
+    /// @param _bTotal           Initial total privacy budget (in 1e18 units)
+    /// @param _allowedRegion    Permitted geographic region identifier string
     constructor(
         address _dataOwner,
         address _modelProvider,
@@ -206,7 +163,6 @@ contract SLCML_Contract {
             "Sensitivity level must be 1-5");
         require(_bTotal > 0, "Total budget must be positive");
 
-        // 初始化主体 S
         dataOwnerSubject = Subject({
             addr:           _dataOwner,
             credentialHash: _credHash_DO,
@@ -225,7 +181,6 @@ contract SLCML_Contract {
 
         ethicsCommittee = _ethicsCommittee;
 
-        // 初始化客体 O
         dataAsset = DataAsset({
             assetId:          _assetId,
             sensitivityLevel: _sensitivityLevel,
@@ -234,30 +189,21 @@ contract SLCML_Contract {
             dataRegion:       _allowedRegion
         });
 
-        // 地理白名单注册
         allowedRegions[keccak256(abi.encodePacked(_allowedRegion))] = true;
 
-        // 质保金（部署时随ETH转入）
         depositBalance = msg.value;
 
         currentState = ContractState.Active;
     }
 
-    // =========================================================================
-    // Section 6: 算法1 —— 差分隐私预算动态管理
-    //            "最小必要原则"的量化实现
-    // =========================================================================
-
-    /**
-     * @notice 数据访问请求入口 —— 对应论文算法1
-     * @dev    三档计费机制:
-     * > 60% bTotal  : 线性基础计费（合规宽容区）
-     * 10% ~ 60%     : 指数惩罚计费 cost = Level * exp(α * n)
-     * < 10%         : 物理熔断，拒绝并降低信誉值
-     * @param  _requestedSensitivity  本次请求数据的敏感度（不得超过 dataAsset.sensitivityLevel）
-     * @return authorized             是否授权访问
-     * @return costConsumed           本次消耗的隐私预算
-     */
+    /// @notice Data access request entry point corresponding to Algorithm 1.
+    /// @dev    Three-tier pricing mechanism:
+    ///         B_rem > 60% B_total : Linear base pricing (compliant zone)
+    ///         10% <= B_rem <= 60% : Exponential penalty pricing, cost = Level * exp(alpha * n)
+    ///         B_rem < 10%         : Physical fuse triggered, access denied, reputation decreased
+    /// @param  _requestedSensitivity  Requested data sensitivity (must not exceed dataAsset.sensitivityLevel)
+    /// @return authorized             Whether access is authorized
+    /// @return costConsumed           Privacy budget consumed by this request
     function requestData(uint8 _requestedSensitivity)
         external
         notBreached
@@ -267,16 +213,12 @@ contract SLCML_Contract {
         require(_requestedSensitivity <= dataAsset.sensitivityLevel,
             "Requested sensitivity exceeds asset level");
 
-        // Step 1: 获取主体当前调用频次 n（用于指数惩罚）
         uint256 n = modelProviderSubject.callCount;
 
-        // Step 2: 计算边界值
         uint256 criticalThreshold = (dataAsset.bTotal * BUDGET_CRITICAL_PCT) / 100;
         uint256 warningThreshold  = (dataAsset.bTotal * BUDGET_WARNING_PCT)  / 100;
 
-        // Step 3 & 4: 物理熔断区 —— B_rem < 10% * B_total
         if (dataAsset.bRem < criticalThreshold) {
-            // 扣减信誉值（高频恶意调用惩罚）
             _decreaseReputation(modelProviderSubject, REPUTATION_PENALTY_STEP * 2);
 
             emit BudgetConsumed(msg.sender, 0, dataAsset.bRem, 2);
@@ -285,32 +227,25 @@ contract SLCML_Contract {
 
         uint256 cost;
 
-        // Step 7-8: 风险预警区 —— 10% <= B_rem <= 60%
         if (dataAsset.bRem <= warningThreshold) {
             cost = _computeExponentialCost(_requestedSensitivity, n);
             emit BudgetConsumed(msg.sender, cost, dataAsset.bRem, 1);
 
-            // 边缘违规：轻微扣减信誉
             _decreaseReputation(modelProviderSubject, REPUTATION_PENALTY_STEP);
         }
-        // Step 9-10: 合规宽容区 —— B_rem > 60%
         else {
-            // 线性基础计费: cost = μ * Level_sens（μ取1e18作为最小计费单位，增强学术仿真可观察性）
             cost = uint256(_requestedSensitivity) * 1e18;
             emit BudgetConsumed(msg.sender, cost, dataAsset.bRem, 0);
         }
 
-        // Step 12: 检查剩余预算是否支付得起本次查询
         if (dataAsset.bRem < cost) {
             emit BudgetConsumed(msg.sender, cost, dataAsset.bRem, 2);
             revert("SLCML: Insufficient budget for this request");
         }
 
-        // Step 13-14: 扣减预算并授权
         dataAsset.bRem -= cost;
         modelProviderSubject.callCount += 1;
 
-        // 触发预警状态切换
         if (dataAsset.bRem <= warningThreshold &&
             currentState == ContractState.Active) {
             _transitionState(ContractState.RiskWarning,
@@ -320,55 +255,37 @@ contract SLCML_Contract {
         return (true, cost);
     }
 
-    /**
-     * @dev    内部函数：使用 PRBMath SD59x18 计算指数惩罚成本
-     * cost = Level_sens * exp(alpha * n)
-     * alpha = 0.1（固定常量）
-     * @param  _level  数据敏感度级别 (1-5)
-     * @param  _n      主体历史调用频次
-     * @return cost    以 wei 精度（1e18）表示的预算消耗量
-     */
+    /// @dev    Computes exponential penalty cost using PRBMath SD59x18.
+    ///         cost = Level_sens * exp(alpha * n), where alpha = 0.1.
+    /// @param  _level  Data sensitivity level (1-5)
+    /// @param  _n      Subject historical call count
+    /// @return cost    Budget consumption in wei precision (1e18)
     function _computeExponentialCost(uint8 _level, uint256 _n)
         internal
         pure
         returns (uint256 cost)
     {
-        // alpha = 0.1，用 SD59x18 定点数表示
-        // SD59x18 的基本单位是 1e18，故 0.1 = 1e17
-        SD59x18 alpha = sd(1e17);                          // 0.1
-        SD59x18 nSD   = convert(int256(_n));               // n → SD59x18
-        SD59x18 exponent = alpha.mul(nSD);                 // alpha * n
-        SD59x18 expVal   = exponent.exp();                 // e^(alpha*n)
+        SD59x18 alpha = sd(1e17);
+        SD59x18 nSD   = convert(int256(_n));
+        SD59x18 exponent = alpha.mul(nSD);
+        SD59x18 expVal   = exponent.exp();
 
-        // Level_sens 转换为 SD59x18
         SD59x18 levelSD  = convert(int256(uint256(_level)));
 
-        // cost_SD = Level * exp(alpha * n)，乘以 1e18 作为最小计费单位
         SD59x18 unitSD   = sd(int256(1e18));
         SD59x18 costSD   = levelSD.mul(expVal).mul(unitSD);
 
-        // 安全转换回 uint256：确保结果为正数
         int256 costInt = SD59x18.unwrap(costSD);
         require(costInt > 0, "SLCML: Cost computation underflow");
         cost = uint256(costInt);
     }
 
-    // =========================================================================
-    // Section 7: 算法2 —— 预言机驱动违约归责与三段式程序正义控制流
-    //            Freeze → Challenge → Adjudication
-    // =========================================================================
-
-    /**
-     * @notice 接收预言机回调数据并启动违约归责流程
-     * @dev    对应论文算法2 Step 1-12：
-     * - 地理出境检测 (Geographic_Breach)
-     * - 模型性能违约检测 (Performance_Breach)
-     * 触发后切入 Challenge 状态，执行资产冻结，开启 72h 异议窗口
-     *
-     * @param _violationType   违约类型字符串（"Geographic_Breach" | "Performance_Breach"）
-     * @param _clauseId        对应自然语言合同条款的索引号（如 "Clause_4.2"）
-     * @param _oraclePayload   预言机原始数据的 Keccak256 哈希（客观环境快照）
-     */
+    /// @notice Receives oracle callback data and initiates breach attribution (Algorithm 2, Steps 1-12).
+    /// @dev    Detects Geographic_Breach or Performance_Breach, transitions to Challenge state,
+    ///         freezes assets, and opens a 72-hour challenge window.
+    /// @param _violationType   Violation type string ("Geographic_Breach" | "Performance_Breach")
+    /// @param _clauseId        Natural language contract clause index (e.g., "Clause_4.2")
+    /// @param _oraclePayload   Keccak256 hash of the oracle raw data (objective environment snapshot)
     function receiveOracleData(
         string  memory _violationType,
         string  memory _clauseId,
@@ -377,17 +294,14 @@ contract SLCML_Contract {
         external
         notBreached
     {
-        // 仅允许数据持有方或预言机适配器地址触发（真实场景中接入 Chainlink）
         require(
             msg.sender == dataOwnerSubject.addr ||
             msg.sender == ethicsCommittee,
             "SLCML: Unauthorized oracle caller"
         );
 
-        // 非空校验：必须携带有效违约类型
         require(bytes(_violationType).length > 0, "SLCML: Empty violation type");
 
-        // 验证违约类型合法性
         bytes32 vTypeHash = keccak256(abi.encodePacked(_violationType));
         require(
             vTypeHash == keccak256("Geographic_Breach")   ||
@@ -396,7 +310,6 @@ contract SLCML_Contract {
             "SLCML: Unknown violation type"
         );
 
-        // Step 10: 强制全局状态机切入 Challenge（异议期）状态
         _transitionState(ContractState.Challenge,
             string(abi.encodePacked("Oracle detected: ", _violationType)));
 
@@ -406,21 +319,15 @@ contract SLCML_Contract {
         pendingOracleHash     = _oraclePayload;
         appealSubmitted       = false;
 
-        // Step 11: 冻结质保金（Freeze —— 非划扣，程序正义保障）
         emit AssetFrozen(modelProviderSubject.addr, depositBalance, block.timestamp);
 
-        // Step 12: 开启 72h 异议窗口
         uint256 deadline = block.timestamp + CHALLENGE_WINDOW;
         emit ChallengeWindowOpen(modelProviderSubject.addr, deadline);
     }
 
-    /**
-     * @notice 被控方（ModelProvider）在异议窗口期内提交抗辩证据
-     * @dev    对应论文中"电子抗辩权（Right of Defense）"设计
-     * 通过预言机提交链下运维日志等证据的哈希锚点
-     *
-     * @param _appealEvidenceHash  被控方链下证据材料的 Keccak256 哈希
-     */
+    /// @notice Respondent (ModelProvider) submits defense evidence within the challenge window.
+    /// @dev    Implements the electronic Right of Defense design described in the paper.
+    /// @param _appealEvidenceHash  Keccak256 hash of the respondent's off-chain defense materials
     function submitAppeal(bytes32 _appealEvidenceHash)
         external
         inState(ContractState.Challenge)
@@ -442,10 +349,8 @@ contract SLCML_Contract {
         emit AppealReceived(modelProviderSubject.addr, _appealEvidenceHash);
     }
 
-    /**
-     * @notice 伦理委员会裁决：驳回申诉，进入终局惩罚
-     * @dev    对应论文算法2 Step 13 中"多签伦理委员会正式驳回"分支
-     */
+    /// @notice Ethics committee adjudication: reject appeal and proceed to final penalty.
+    /// @dev    Corresponds to Algorithm 2, Step 13 ("multi-signature committee formal rejection" branch).
     function rejectAppeal()
         external
         inState(ContractState.Challenge)
@@ -454,14 +359,11 @@ contract SLCML_Contract {
         require(appealSubmitted, "SLCML: No appeal to reject");
         currentAppeal.isRejected = true;
 
-        // 驳回后立即执行终局惩罚
         _executeFinalPenalty("Appeal rejected by EthicsCommittee");
     }
 
-    /**
-     * @notice 伦理委员会裁决：接受申诉，恢复合约正常状态
-     * @dev    守约认定：被控方申诉成功，解除冻结，状态回滚至 Active
-     */
+    /// @notice Ethics committee adjudication: accept appeal and restore contract to Active state.
+    /// @dev    Compliance determination: respondent's appeal is upheld, assets unfrozen, state rolled back.
     function acceptAppeal()
         external
         inState(ContractState.Challenge)
@@ -477,10 +379,8 @@ contract SLCML_Contract {
         appealSubmitted   = false;
     }
 
-    /**
-     * @notice 任意人在异议窗口超时后触发终局惩罚执行
-     * @dev    对应论文算法2 Step 13 中"72小时异议期超时"分支
-     */
+    /// @notice Triggers final penalty execution after the challenge window times out.
+    /// @dev    Corresponds to Algorithm 2, Step 13 ("72-hour challenge window timeout" branch).
     function executePenaltyAfterTimeout() external inState(ContractState.Challenge) {
         require(
             block.timestamp >= challengeStartTime + CHALLENGE_WINDOW,
@@ -489,28 +389,19 @@ contract SLCML_Contract {
         _executeFinalPenalty("Challenge window expired without valid appeal");
     }
 
-    /**
-     * @dev    内部核心函数：终局清算与司法存证生成
-     * 对应论文算法2 Step 14-20
-     * 实现 GeneEvi 函数的完整逻辑
-     */
+    /// @dev    Core internal function: final settlement and judicial evidence generation.
+    ///         Corresponds to Algorithm 2, Steps 14-20 (GeneEvi procedure).
     function _executeFinalPenalty(string memory _adjudicationReason) internal {
-        // Step 15: 合约状态正式切入不可逆 Breach 状态
         _transitionState(ContractState.Breach, _adjudicationReason);
 
-        // Step 16: 罚没质保金并转账给数据持有方（Adjudication —— 正式划扣）
         uint256 penaltyAmount = depositBalance;
         depositBalance = 0;
         
-        // 【修正】将罚金真实转账给受害方 (DataOwner)
         if (penaltyAmount > 0) {
             (bool success, ) = dataOwnerSubject.addr.call{value: penaltyAmount}("");
             require(success, "SLCML: Penalty transfer failed");
         }
 
-        // Step 17: 动态填充自然语言法庭陈述句模板
-        // 模板: "在{时间}，经预言机证实，主体{违约方}触发了{违约事实}，
-        //        违反了合同{条款}，已采取{保全措施}。"
         string memory nlFact = _fillNLTemplate(
             block.timestamp,
             modelProviderSubject.addr,
@@ -519,8 +410,6 @@ contract SLCML_Contract {
             penaltyAmount
         );
 
-        // Step 18: GeneEvi —— 生成 Keccak256 证据哈希锚点
-        // 将底层执行代码逻辑、数字签名、自然语言判词共同打包
         bytes32 evidenceHash = keccak256(abi.encodePacked(
             block.timestamp,
             block.number,
@@ -532,9 +421,9 @@ contract SLCML_Contract {
             penaltyAmount
         ));
 
-        // 构建完整司法证据结构体并追加至不可变日志
         /* 
-        // 优化：为了节省极高的存储 Gas，我们注释掉状态存储，仅保留 Emit 事件
+        // Optimization: storage-based logging commented out in favor of event-based
+        // emission to reduce Gas overhead while preserving full evidence traceability.
         evidenceLog.push(JudicialEvidence({
             blockTimestamp:  block.timestamp,
             blockNumber:     block.number,
@@ -548,7 +437,6 @@ contract SLCML_Contract {
         }));
         */
 
-        // Step 19: 通过 EVM Event 机制永久铭刻至区块日志
         emit LogJudicialEvidence(
             block.timestamp,
             block.number,
@@ -562,24 +450,16 @@ contract SLCML_Contract {
 
         emit PenaltyExecuted(modelProviderSubject.addr, penaltyAmount, evidenceHash);
 
-        // 信誉最终降级
         _decreaseReputation(modelProviderSubject, REPUTATION_PENALTY_STEP * 4);
 
-        // 清理临时变量
         delete pendingViolationType;
         delete pendingClauseId;
         pendingOracleHash = bytes32(0);
     }
 
-    // =========================================================================
-    // Section 8: 辅助内部函数
-    // =========================================================================
-
-    /**
-     * @dev 自然语言模板填充函数
-     * 将链上实时变量注入 LLM 预编译的标准化模板
-     * 实现"语义可穿透"的法庭可读证据生成
-     */
+    /// @dev Populates the natural language judicial fact statement template
+    ///      by injecting on-chain runtime variables into the LLM-precompiled template,
+    ///      producing semantically penetrable court-readable evidence.
     function _fillNLTemplate(
         uint256 _timestamp,
         address _party,
@@ -604,18 +484,14 @@ contract SLCML_Contract {
         ));
     }
 
-    /**
-     * @dev 状态机转换函数，统一管理状态切换并抛出事件
-     */
+    /// @dev Unified state machine transition function with event emission.
     function _transitionState(ContractState _newState, string memory _reason) internal {
         ContractState oldState = currentState;
         currentState = _newState;
         emit StateTransition(oldState, _newState, _reason, block.timestamp);
     }
 
-    /**
-     * @dev 信誉值扣减函数（防止下溢到0）
-     */
+    /// @dev Decreases reputation score with underflow protection (floor at 0).
     function _decreaseReputation(Subject storage _subject, uint256 _amount) internal {
         if (_subject.reputation >= _amount) {
             _subject.reputation -= _amount;
@@ -624,9 +500,7 @@ contract SLCML_Contract {
         }
     }
 
-    /**
-     * @dev uint256 → string 转换（Solidity 原生不提供）
-     */
+    /// @dev Converts uint256 to its decimal string representation.
     function _uintToString(uint256 _v) internal pure returns (string memory) {
         if (_v == 0) return "0";
         uint256 temp = _v;
@@ -641,9 +515,7 @@ contract SLCML_Contract {
         return string(buffer);
     }
 
-    /**
-     * @dev address → 十六进制字符串转换
-     */
+    /// @dev Converts address to its hexadecimal string representation.
     function _addressToString(address _addr) internal pure returns (string memory) {
         bytes memory data = abi.encodePacked(_addr);
         bytes memory hexAlpha = "0123456789abcdef";
@@ -657,9 +529,7 @@ contract SLCML_Contract {
         return string(str);
     }
 
-    /**
-     * @dev ContractState 枚举 → 可读字符串
-     */
+    /// @dev Converts ContractState enum to a human-readable string.
     function _stateToString(ContractState _s) internal pure returns (string memory) {
         if (_s == ContractState.Active)      return "Active";
         if (_s == ContractState.RiskWarning) return "RiskWarning";
@@ -668,23 +538,14 @@ contract SLCML_Contract {
         return "Resolved";
     }
 
-    // =========================================================================
-    // Section 9: 公共查询函数（View Functions）—— 司法调阅接口
-    // =========================================================================
-
-    /**
-     * @notice 获取证据日志总条数
-     * @dev    供司法机关调阅时确认证据链完整性
-     */
+    /// @notice Returns the total number of evidence records in the on-chain log.
     function getEvidenceCount() external view returns (uint256) {
         return evidenceLog.length;
     }
 
-    /**
-     * @notice 按索引获取单条司法证据完整结构体
-     * @param  _index 证据数组下标
-     * @return 完整的 JudicialEvidence 结构体
-     */
+    /// @notice Retrieves the complete JudicialEvidence struct at the given index.
+    /// @param  _index  Evidence array index
+    /// @return         The full JudicialEvidence struct
     function getEvidence(uint256 _index)
         external
         view
@@ -694,27 +555,21 @@ contract SLCML_Contract {
         return evidenceLog[_index];
     }
 
-    /**
-     * @notice 获取最新一条证据的哈希锚点（快速核验接口）
-     * @dev    法官可通过此哈希在区块浏览器上独立验证证据未被篡改
-     */
+    /// @notice Returns the evidence hash anchor of the most recent judicial record.
     function getLatestEvidenceHash() external view returns (bytes32) {
         require(evidenceLog.length > 0, "SLCML: No evidence recorded yet");
         return evidenceLog[evidenceLog.length - 1].evidenceHash;
     }
 
-    /**
-     * @notice 获取合约当前完整状态快照
-     * @dev    供前端监控面板与链下合规引擎轮询使用
-     * @return state            当前状态机状态
-     * @return bRem             剩余隐私预算
-     * @return bTotal           初始总预算
-     * @return budgetPct        剩余预算百分比（×100，避免浮点）
-     * @return mpReputation     AI机构当前信誉值
-     * @return mpCallCount      AI机构历史调用次数
-     * @return deposit          当前冻结质保金余额
-     * @return challengeDeadline 挑战期截止时间（0表示未处于挑战期）
-     */
+    /// @notice Returns a full contract state snapshot for compliance monitoring.
+    /// @return state             Current FSM state
+    /// @return bRem              Remaining privacy budget
+    /// @return bTotal            Initial total budget
+    /// @return budgetPct         Remaining budget percentage (x100)
+    /// @return mpReputation      Model provider current reputation score
+    /// @return mpCallCount       Model provider historical call count
+    /// @return deposit           Current frozen deposit balance
+    /// @return challengeDeadline Challenge period deadline (0 if not in Challenge state)
     function getContractSnapshot()
         external
         view
@@ -741,44 +596,30 @@ contract SLCML_Contract {
             : 0;
     }
 
-    /**
-     * @notice 验证特定地理区域是否在白名单内
-     * @param  _region 区域字符串标识（如 "China_Mainland"）
-     * @return bool
-     */
+    /// @notice Verifies whether a specific geographic region is whitelisted.
+    /// @param  _region Region identifier string (e.g., "China_Mainland")
+    /// @return bool
     function isRegionAllowed(string memory _region) external view returns (bool) {
         return allowedRegions[keccak256(abi.encodePacked(_region))];
     }
 
-    /**
-     * @notice 获取数据资产当前完整属性
-     */
+    /// @notice Returns the current data asset properties.
     function getDataAsset() external view returns (DataAsset memory) {
         return dataAsset;
     }
 
-    /**
-     * @notice 获取主体信息（数据持有方）
-     */
+    /// @notice Returns the data owner (Party A) subject information.
     function getDataOwnerInfo() external view returns (Subject memory) {
         return dataOwnerSubject;
     }
 
-    /**
-     * @notice 获取主体信息（AI研发机构）
-     */
+    /// @notice Returns the model provider (Party B) subject information.
     function getModelProviderInfo() external view returns (Subject memory) {
         return modelProviderSubject;
     }
 
-    // =========================================================================
-    // Section 10: 管理函数
-    // =========================================================================
-
-    /**
-     * @notice 数据持有方向合约追加白名单地理区域
-     * @param  _region 新增允许区域字符串
-     */
+    /// @notice Adds a geographic region to the whitelist.
+    /// @param  _region Region identifier string to allow
     function addAllowedRegion(string memory _region)
         external
         onlyDataOwner
@@ -787,9 +628,7 @@ contract SLCML_Contract {
         allowedRegions[keccak256(abi.encodePacked(_region))] = true;
     }
 
-    /**
-     * @notice 伦理委员会将合约标记为 Resolved（全部履行完毕）
-     */
+    /// @notice Marks the contract as Resolved (fully adjudicated).
     function markResolved()
         external
         onlyEthicsCommittee
@@ -798,9 +637,7 @@ contract SLCML_Contract {
         _transitionState(ContractState.Resolved, "Contract fully adjudicated");
     }
 
-    /**
-     * @notice 接受 ETH 质保金存入
-     */
+    /// @notice Accepts ETH deposit transfers.
     receive() external payable {
         depositBalance += msg.value;
     }
