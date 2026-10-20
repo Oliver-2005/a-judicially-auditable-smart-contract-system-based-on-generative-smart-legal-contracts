@@ -1,0 +1,159 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+/**
+ * @notice Research-only SLCML demonstrator for a public AM-Bench source record.
+ * @dev NIST is not a party. Nominal settings are metadata consistency checks,
+ *      not part qualification limits. No real asset is transferred or frozen.
+ */
+contract AMB2022SourceAudit {
+    enum State { Active, Frozen, Challenge, Breach, Restored }
+
+    address public immutable depositor;
+    address public immutable analyst;
+    address public immutable reviewer;
+    bytes32 public immutable approvedCaseId;
+    bytes32 public immutable approvedSourceCardHash;
+    bytes32 public immutable approvedMachineHash;
+
+    uint16 public constant NOMINAL_LASER_POWER_W = {{ nominal_power }};
+    uint16 public constant NOMINAL_SCAN_SPEED_MM_S = {{ nominal_speed }};
+    uint16 public constant OXYGEN_UPPER_BOUND_PPM_EXCLUSIVE = {{ oxygen_upper_bound }};
+    uint256 public constant CHALLENGE_WINDOW = {{ challenge_window }};
+
+    State public currentState;
+    bool public testReleaseFrozen;
+    bool public testDepositFrozen;
+    bool public challengeSubmitted;
+    uint256 public challengeStart;
+    bytes32 public pendingCaseId;
+    bytes32 public pendingSourceCardHash;
+    bytes32 public pendingEvidenceHash;
+    bytes32 public challengeEvidenceHash;
+    string public pendingClauseId;
+
+    event RecordSubmitted(bytes32 indexed caseId, bytes32 sourceCardHash,
+        bytes32 machineHash, uint16 laserPowerW, uint16 scanSpeedMmS,
+        uint16 oxygenPpm, bytes32 evidenceHash, bool metadataMatch);
+    event StateTransition(State indexed fromState, State indexed toState,
+        string reason, uint256 timestamp);
+    event AuditEvidence(bytes32 indexed caseId, bytes32 indexed phaseHash,
+        bytes32 indexed clauseHash, string phase, string clauseId,
+        bytes32 sourceCardHash, bytes32 evidenceHash, State state,
+        uint256 timestamp);
+
+    modifier onlyReviewer() {
+        require(msg.sender == reviewer, "AM-demo: reviewer only");
+        _;
+    }
+    modifier onlyAnalyst() {
+        require(msg.sender == analyst, "AM-demo: analyst only");
+        _;
+    }
+    modifier inChallenge() {
+        require(currentState == State.Challenge, "AM-demo: no challenge open");
+        _;
+    }
+
+    constructor(address _depositor, address _analyst, address _reviewer,
+        bytes32 _caseId, bytes32 _sourceCardHash, bytes32 _machineHash) {
+        require(_depositor != address(0) && _analyst != address(0)
+            && _reviewer != address(0), "AM-demo: zero address");
+        require(_caseId != bytes32(0) && _sourceCardHash != bytes32(0)
+            && _machineHash != bytes32(0), "AM-demo: zero registry key");
+        depositor = _depositor;
+        analyst = _analyst;
+        reviewer = _reviewer;
+        approvedCaseId = _caseId;
+        approvedSourceCardHash = _sourceCardHash;
+        approvedMachineHash = _machineHash;
+        currentState = State.Active;
+    }
+
+    function submitRecord(bytes32 caseId, bytes32 sourceCardHash,
+        bytes32 machineHash, uint16 laserPowerW, uint16 scanSpeedMmS,
+        uint16 oxygenPpm, bytes32 evidenceHash) external onlyReviewer {
+        require(currentState == State.Active || currentState == State.Restored,
+            "AM-demo: record blocked");
+        require(caseId == approvedCaseId, "AM-demo: different build");
+        require(evidenceHash != bytes32(0), "AM-demo: empty evidence");
+
+        bool sourceMatch = sourceCardHash == approvedSourceCardHash
+            && machineHash == approvedMachineHash;
+        bool metadataMatch = laserPowerW == NOMINAL_LASER_POWER_W
+            && scanSpeedMmS == NOMINAL_SCAN_SPEED_MM_S
+            && oxygenPpm < OXYGEN_UPPER_BOUND_PPM_EXCLUSIVE;
+        emit RecordSubmitted(caseId, sourceCardHash, machineHash,
+            laserPowerW, scanSpeedMmS, oxygenPpm, evidenceHash,
+            sourceMatch && metadataMatch);
+
+        if (sourceMatch && metadataMatch) {
+            _audit(caseId, "record_accepted", "Clause_3.2",
+                sourceCardHash, evidenceHash);
+            return;
+        }
+        pendingCaseId = caseId;
+        pendingSourceCardHash = sourceCardHash;
+        pendingEvidenceHash = evidenceHash;
+        pendingClauseId = sourceMatch ? "Clause_3.2" : "Clause_3.1";
+        challengeEvidenceHash = bytes32(0);
+        challengeSubmitted = false;
+        testReleaseFrozen = true;
+        testDepositFrozen = true;
+        challengeStart = block.timestamp;
+        _transition(State.Frozen, "provisional test hold");
+        _audit(caseId, "freeze", pendingClauseId, sourceCardHash, evidenceHash);
+        _transition(State.Challenge, "hypothetical challenge window opened");
+    }
+
+    function submitChallenge(bytes32 evidenceHash) external onlyAnalyst inChallenge {
+        require(block.timestamp <= challengeStart + CHALLENGE_WINDOW,
+            "AM-demo: challenge late");
+        require(!challengeSubmitted, "AM-demo: challenge already filed");
+        require(evidenceHash != bytes32(0), "AM-demo: empty challenge evidence");
+        challengeSubmitted = true;
+        challengeEvidenceHash = evidenceHash;
+        _audit(pendingCaseId, "challenge_submitted", pendingClauseId,
+            pendingSourceCardHash, evidenceHash);
+    }
+
+    function acceptChallenge() external onlyReviewer inChallenge {
+        require(challengeSubmitted, "AM-demo: no evidence filed");
+        _transition(State.Restored, "challenge accepted");
+        testReleaseFrozen = false;
+        testDepositFrozen = false;
+        _audit(pendingCaseId, "challenge_accepted", pendingClauseId,
+            pendingSourceCardHash, challengeEvidenceHash);
+    }
+
+    function rejectChallenge() external onlyReviewer inChallenge {
+        require(challengeSubmitted, "AM-demo: no evidence filed");
+        _confirm("challenge rejected", challengeEvidenceHash);
+    }
+
+    function finalizeAfterTimeout() external inChallenge {
+        require(block.timestamp > challengeStart + CHALLENGE_WINDOW,
+            "AM-demo: window still open");
+        _confirm("challenge timeout", pendingEvidenceHash);
+    }
+
+    function _confirm(string memory reason, bytes32 evidenceHash) internal {
+        _transition(State.Breach, reason);
+        _audit(pendingCaseId, "breach_confirmed", pendingClauseId,
+            pendingSourceCardHash, evidenceHash);
+    }
+
+    function _transition(State toState, string memory reason) internal {
+        State fromState = currentState;
+        currentState = toState;
+        emit StateTransition(fromState, toState, reason, block.timestamp);
+    }
+
+    function _audit(bytes32 caseId, string memory phase,
+        string memory clauseId, bytes32 sourceCardHash,
+        bytes32 evidenceHash) internal {
+        emit AuditEvidence(caseId, keccak256(bytes(phase)),
+            keccak256(bytes(clauseId)), phase, clauseId,
+            sourceCardHash, evidenceHash, currentState, block.timestamp);
+    }
+}

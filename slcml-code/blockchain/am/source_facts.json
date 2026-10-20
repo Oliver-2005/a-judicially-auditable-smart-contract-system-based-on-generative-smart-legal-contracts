@@ -1,0 +1,33 @@
+{
+  "record_type": "researcher_transcribed_public_source_fact_card",
+  "not_raw_nist_telemetry": true,
+  "case_id": "AMB2022-01-AMMT-B6",
+  "benchmark": "AMB2022-01",
+  "material": "IN718",
+  "process": "laser powder bed fusion",
+  "machine": "NIST Additive Manufacturing Metrology Testbed (AMMT)",
+  "artifact": "bridge-shaped test artifact",
+  "nominal_commanded_laser_power_w": 285,
+  "nominal_commanded_scan_speed_mm_s": 960,
+  "nominal_hatch_spacing_um": 110,
+  "nominal_layer_thickness_um": 40,
+  "reported_chamber_oxygen_upper_bound_ppm_exclusive": 1000,
+  "build_6_thermocouple_csv_url": "https://data.nist.gov/od/ds/ark:/88434/mds2-2607/Thermocouples/AMB2022-01-AMMT-B6-Thermocouple.csv",
+  "sources": [
+    {
+      "id": "NIST-AMBench-description",
+      "url": "https://www.nist.gov/ambench/amb2022-01-benchmark-measurements-and-challenge-problems",
+      "supports": "real build, AMMT machine, B6 identifier, public data links"
+    },
+    {
+      "id": "NIST-PDR-catalog",
+      "url": "https://catalog.data.gov/dataset/am-bench-2022-3d-build-modeling-challenge-description-data-amb2022-01",
+      "supports": "named B6 thermocouple CSV distribution"
+    },
+    {
+      "id": "AMBench-primary-measurement-paper",
+      "url": "https://doi.org/10.1007/s40192-023-00338-y",
+      "supports": "285 W, 960 mm/s, 110 micrometres, 40 micrometres, oxygen below 1000 ppm"
+    }
+  ]
+}

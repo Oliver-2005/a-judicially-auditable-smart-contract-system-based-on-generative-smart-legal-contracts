@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:slcml:ir:2.1.0",
+  "title": "SLCML intermediate representation",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "Subject", "Object", "Condition", "Rule", "Audit"],
+  "properties": {
+    "schema_version": {"const": "2.1.0"},
+    "contract_id": {"$ref": "#/$defs/identifier"},
+    "Subject": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/subject"}},
+    "Object": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/object"}},
+    "Condition": {"type": "array", "items": {"$ref": "#/$defs/condition"}},
+    "Rule": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/rule"}},
+    "Audit": {"$ref": "#/$defs/audit"},
+    "dispute_unit_templates": {"type": "array", "items": {"$ref": "#/$defs/disputeUnit"}},
+    "metadata": {"type": "object"}
+  },
+  "$defs": {
+    "text": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "identifier": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]*$", "maxLength": 128},
+    "clause": {"type": "string", "pattern": "^Clause_[0-9]+(?:\\.[0-9]+)*$"},
+    "ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/identifier"}},
+    "texts": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+    "review": {
+      "type": "object", "additionalProperties": false, "required": ["requires_human_review", "reasons"],
+      "properties": {"requires_human_review": {"type": "boolean"}, "reasons": {"$ref": "#/$defs/texts"}, "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1}},
+      "allOf": [{"if": {"properties": {"requires_human_review": {"const": true}}}, "then": {"properties": {"reasons": {"minItems": 1}}}}]
+    },
+    "subject": {
+      "type": "object", "additionalProperties": false,
+      "required": ["subject_id", "role", "natural_language_description", "address_placeholder", "source_clause_index"],
+      "properties": {
+        "subject_id": {"$ref": "#/$defs/identifier"},
+        "role": {"enum": ["DataProvider", "DataConsumer", "DataAnalyst", "ModelTrainer", "ModelUser", "Auditor", "Arbitrator", "Regulator", "Beneficiary", "Guarantor", "ThirdPartyEvaluator", "Manufacturer", "DesignatedReviewer", "Other"]},
+        "natural_language_description": {"$ref": "#/$defs/text"}, "address_placeholder": {"$ref": "#/$defs/text"},
+        "credential_type": {"enum": ["BusinessLicense", "MedicalLicense", "DataLicense", "QualificationCert", "IdentityVerification", "None", "Other"]},
+        "initial_reputation_score": {"type": "number", "minimum": 0, "maximum": 100},
+        "permissions": {"$ref": "#/$defs/texts"}, "source_clause_index": {"$ref": "#/$defs/clause"}, "review": {"$ref": "#/$defs/review"}
+      }
+    },
+    "object": {
+      "type": "object", "additionalProperties": false,
+      "required": ["object_id", "object_type", "natural_language_description", "source_clause_index"],
+      "properties": {
+        "object_id": {"$ref": "#/$defs/identifier"},
+        "object_type": {"enum": ["Dataset", "Model", "ModelParameters", "ComputeResource", "APIAccess", "IntellectualProperty", "DigitalAsset", "ServiceRight", "EvaluationReport", "DerivativeWork", "SourceRecord", "Other"]},
+        "natural_language_description": {"$ref": "#/$defs/text"}, "owner_subject_id": {"$ref": "#/$defs/identifier"},
+        "quantifiable_attributes": {"type": "object", "properties": {
+          "sensitivity_level": {"type": "integer", "minimum": 1, "maximum": 5},
+          "privacy_budget_total": {"type": "number", "minimum": 0}, "privacy_budget_remaining": {"type": "number", "minimum": 0}
+        }, "dependentRequired": {"privacy_budget_remaining": ["privacy_budget_total"]}},
+        "jurisdiction_constraints": {"type": "object"}, "source_clause_index": {"$ref": "#/$defs/clause"}, "review": {"$ref": "#/$defs/review"}
+      }
+    },
+    "predicate": {
+      "type": "object", "additionalProperties": false, "required": ["left_operand", "operator", "right_operand", "operand_type"],
+      "properties": {
+        "left_operand": {"$ref": "#/$defs/identifier"}, "operator": {"enum": ["<", "<=", ">", ">=", "==", "!=", "in", "not_in"]},
+        "right_operand": {}, "operand_type": {"enum": ["number", "integer", "boolean", "string", "set"]}, "unit": {"$ref": "#/$defs/text"}
+      },
+      "allOf": [
+        {"if": {"properties": {"operand_type": {"const": "number"}}}, "then": {"properties": {"right_operand": {"type": "number"}, "operator": {"enum": ["<", "<=", ">", ">=", "==", "!="]}}}},
+        {"if": {"properties": {"operand_type": {"const": "integer"}}}, "then": {"properties": {"right_operand": {"type": "integer"}, "operator": {"enum": ["<", "<=", ">", ">=", "==", "!="]}}}},
+        {"if": {"properties": {"operand_type": {"const": "boolean"}}}, "then": {"properties": {"right_operand": {"type": "boolean"}, "operator": {"enum": ["==", "!="]}}}},
+        {"if": {"properties": {"operand_type": {"const": "string"}}}, "then": {"properties": {"right_operand": {"type": "string"}, "operator": {"enum": ["==", "!="]}}}},
+        {"if": {"properties": {"operand_type": {"const": "set"}}}, "then": {"properties": {"right_operand": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": ["string", "number", "boolean"]}}, "operator": {"enum": ["in", "not_in"]}}}}
+      ]
+    },
+    "condition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["condition_id", "condition_category", "natural_language_expression", "formal_predicate", "predicate_components", "evaluation_timing", "source_clause_index"],
+      "properties": {
+        "condition_id": {"$ref": "#/$defs/identifier"},
+        "condition_category": {"enum": ["Temporal", "Geographic", "Performance", "Procedural", "Quantitative", "Qualitative", "Consent", "Compliance", "TriggerEvent", "Authorization"]},
+        "natural_language_expression": {"$ref": "#/$defs/text"}, "formal_predicate": {"$ref": "#/$defs/text"},
+        "predicate_components": {"oneOf": [{"$ref": "#/$defs/predicate"}, {"type": "null"}]},
+        "depends_on": {"$ref": "#/$defs/ids"}, "constraint_group": {"$ref": "#/$defs/identifier"},
+        "data_source": {"type": "object", "additionalProperties": false, "required": ["source_type"], "properties": {"source_type": {"enum": ["OnChain", "Oracle", "ManualInput", "SystemGenerated"]}, "oracle_name": {"$ref": "#/$defs/text"}}},
+        "evaluation_timing": {"enum": ["BeforeExecution", "DuringExecution", "AfterExecution", "Continuous"]},
+        "source_clause_index": {"$ref": "#/$defs/clause"}, "review": {"$ref": "#/$defs/review"}
+      },
+      "allOf": [{"if": {"properties": {"predicate_components": {"type": "null"}}}, "then": {"required": ["review"], "properties": {"review": {"properties": {"requires_human_review": {"const": true}}}}}}]
+    },
+    "transition": {
+      "type": "object", "additionalProperties": false, "required": ["from_state", "intermediate_states", "possible_end_states"],
+      "properties": {"from_state": {"$ref": "#/$defs/identifier"}, "intermediate_states": {"$ref": "#/$defs/ids"}, "possible_end_states": {"allOf": [{"$ref": "#/$defs/ids"}, {"minItems": 1}]}, "transition_diagram": {"$ref": "#/$defs/text"}}
+    },
+    "procedure": {
+      "type": "object", "additionalProperties": false, "required": ["freeze_phase", "challenge_phase", "adjudication_phase"],
+      "properties": {
+        "freeze_phase": {"type": "object", "additionalProperties": false, "required": ["freeze_action_description", "freeze_timestamp_field", "evidence_preservation"], "properties": {
+          "freeze_action_description": {"$ref": "#/$defs/text"}, "freeze_timestamp_field": {"$ref": "#/$defs/identifier"}, "frozen_assets": {"$ref": "#/$defs/texts"}, "evidence_preservation": {"allOf": [{"$ref": "#/$defs/texts"}, {"minItems": 1}]}
+        }},
+        "challenge_phase": {"type": "object", "additionalProperties": false, "required": ["challenge_window_seconds", "deadline_inclusive", "eligible_challengers", "challenge_submission"], "properties": {
+          "challenge_window_duration": {"$ref": "#/$defs/text"}, "challenge_window_seconds": {"type": ["integer", "null"], "minimum": 1}, "deadline_inclusive": {"type": "boolean"},
+          "eligible_challengers": {"allOf": [{"$ref": "#/$defs/ids"}, {"minItems": 1}]},
+          "challenge_submission": {"type": "object", "additionalProperties": false, "required": ["function_signature", "required_evidence_types", "nonzero_evidence_required"], "properties": {"function_signature": {"$ref": "#/$defs/text"}, "required_evidence_types": {"allOf": [{"$ref": "#/$defs/texts"}, {"minItems": 1}]}, "nonzero_evidence_required": {"const": true}}}
+        }},
+        "adjudication_phase": {"type": "object", "additionalProperties": false, "required": ["adjudication_authority", "adjudication_outcomes", "default_outcome_on_timeout", "timeout_requires_no_submission"], "properties": {
+          "adjudication_authority": {"type": "object", "additionalProperties": false, "required": ["authority_type", "authority_subject_id"], "properties": {"authority_type": {"$ref": "#/$defs/text"}, "authority_subject_id": {"$ref": "#/$defs/identifier"}}},
+          "adjudication_outcomes": {"type": "array", "minItems": 2, "items": {"type": "object", "additionalProperties": false, "required": ["outcome_type", "next_state"], "properties": {"outcome_type": {"$ref": "#/$defs/text"}, "next_state": {"$ref": "#/$defs/identifier"}}}},
+          "default_outcome_on_timeout": {"$ref": "#/$defs/text"}, "timeout_requires_no_submission": {"const": true}
+        }}
+      }
+    },
+    "rule": {
+      "type": "object", "additionalProperties": false,
+      "required": ["rule_id", "rule_type", "natural_language_description", "trigger_condition_ids", "trigger_condition_logic", "target_subject", "target_object", "source_clause_index"],
+      "properties": {
+        "rule_id": {"$ref": "#/$defs/identifier"}, "rule_type": {"enum": ["Obligation", "Prohibition", "Permission", "Penalty", "Reward", "Termination", "Exception"]},
+        "natural_language_description": {"$ref": "#/$defs/text"}, "target_subject": {"$ref": "#/$defs/identifier"}, "target_object": {"$ref": "#/$defs/identifier"},
+        "trigger_condition_ids": {"$ref": "#/$defs/ids"}, "trigger_condition_logic": {"enum": ["ALL", "ANY", "ON_FAILURE", "UNCONDITIONAL"]}, "depends_on_rule_ids": {"$ref": "#/$defs/ids"},
+        "source_clause_index": {"$ref": "#/$defs/clause"},
+        "breach_classification": {"type": "object", "additionalProperties": false, "required": ["breach_type", "severity_level"], "properties": {"breach_type": {"enum": ["Geographic_Breach", "Temporal_Breach", "Performance_Breach", "Privacy_Breach", "Authorization_Breach", "Quality_Breach", "Procedural_Breach", "Payment_Breach", "Confidentiality_Breach"]}, "severity_level": {"enum": ["Minor", "Moderate", "Major", "Critical"]}, "natural_language_description": {"$ref": "#/$defs/text"}}},
+        "state_machine_transition": {"$ref": "#/$defs/transition"}, "procedural_justice": {"$ref": "#/$defs/procedure"}, "dispute_unit_template_id": {"$ref": "#/$defs/identifier"}, "review": {"$ref": "#/$defs/review"}
+      },
+      "allOf": [{"if": {"properties": {"trigger_condition_logic": {"const": "UNCONDITIONAL"}}}, "then": {"properties": {"trigger_condition_ids": {"maxItems": 0}}}, "else": {"properties": {"trigger_condition_ids": {"minItems": 1}}}}]
+    },
+    "disputeUnit": {
+      "type": "object", "additionalProperties": false,
+      "required": ["template_id", "rule_ids", "source_clause_index", "issue_type", "subject_ids", "object_ids", "merge_criteria_description", "finality_defaults", "restricted_recovery_defaults", "parameter_basis"],
+      "properties": {
+        "template_id": {"$ref": "#/$defs/identifier"}, "rule_ids": {"allOf": [{"$ref": "#/$defs/ids"}, {"minItems": 1}]}, "source_clause_index": {"$ref": "#/$defs/clause"}, "issue_type": {"$ref": "#/$defs/text"},
+        "subject_ids": {"allOf": [{"$ref": "#/$defs/ids"}, {"minItems": 1}]}, "object_ids": {"allOf": [{"$ref": "#/$defs/ids"}, {"minItems": 1}]}, "merge_criteria_description": {"$ref": "#/$defs/text"},
+        "parameter_basis": {"enum": ["SourceClause", "ConfiguredDefault", "Unresolved"]},
+        "finality_defaults": {"type": ["object", "null"], "additionalProperties": false, "required": ["N_max", "K_max", "theta_safe"], "properties": {"N_max": {"type": "integer", "minimum": 1}, "K_max": {"type": "integer", "minimum": 1}, "theta_safe": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1}}},
+        "restricted_recovery_defaults": {"type": ["object", "null"], "additionalProperties": false, "required": ["manual_review_required", "high_sensitive_access_blocked", "privacy_cost_multiplier"], "properties": {"manual_review_required": {"const": true}, "high_sensitive_access_blocked": {"const": true}, "privacy_cost_multiplier": {"type": "number", "exclusiveMinimum": 1}}}
+      },
+      "allOf": [{"if": {"properties": {"parameter_basis": {"enum": ["SourceClause", "ConfiguredDefault"]}}}, "then": {"properties": {"finality_defaults": {"type": "object"}, "restricted_recovery_defaults": {"type": "object"}}}}]
+    },
+    "evidenceTemplate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["template_id", "associated_rule_id", "node_id", "template_layer", "template_content", "placeholder_mappings"],
+      "properties": {
+        "template_id": {"$ref": "#/$defs/identifier"}, "associated_rule_id": {"$ref": "#/$defs/identifier"}, "node_id": {"$ref": "#/$defs/identifier"}, "template_layer": {"enum": ["FactStatement", "BreachIdentification", "ProceduralRecord", "JudicialSummary"]}, "template_content": {"$ref": "#/$defs/text"},
+        "placeholder_mappings": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["placeholder", "data_source", "data_type"], "properties": {"placeholder": {"type": "string", "pattern": "^\\{[A-Za-z][A-Za-z0-9_]*\\}$"}, "data_source": {"$ref": "#/$defs/identifier"}, "data_type": {"enum": ["string", "bytes32", "uint256", "address", "bool", "record"]}}}}
+      }
+    },
+    "auditNode": {
+      "type": "object", "additionalProperties": false, "required": ["node_id", "event", "phase", "clause_index", "rule_ids"],
+      "properties": {"node_id": {"$ref": "#/$defs/identifier"}, "event": {"$ref": "#/$defs/identifier"}, "phase": {"enum": ["NormalAcceptance", "Frozen", "Challenge", "Adjudication", "Recovery", "Other"]}, "clause_index": {"$ref": "#/$defs/clause"}, "rule_ids": {"allOf": [{"$ref": "#/$defs/ids"}, {"minItems": 1}]}}
+    },
+    "audit": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "evidence_templates": {"type": "array", "items": {"$ref": "#/$defs/evidenceTemplate"}},
+        "clause_index_registry": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["clause_index", "clause_title"], "properties": {"clause_index": {"$ref": "#/$defs/clause"}, "clause_title": {"$ref": "#/$defs/text"}}}},
+        "key_execution_nodes": {"type": "array", "items": {"$ref": "#/$defs/auditNode"}},
+        "judicial_log_schema": {"type": "object", "additionalProperties": false, "required": ["log_event_name", "required_fields", "field_roles"], "properties": {
+          "log_event_name": {"$ref": "#/$defs/identifier"}, "required_fields": {"allOf": [{"$ref": "#/$defs/texts"}, {"minItems": 4}]},
+          "field_roles": {"type": "object", "additionalProperties": false, "required": ["clause_index", "evidence_hash", "state", "timestamp"], "properties": {"clause_index": {"$ref": "#/$defs/identifier"}, "evidence_hash": {"$ref": "#/$defs/identifier"}, "state": {"$ref": "#/$defs/identifier"}, "timestamp": {"$ref": "#/$defs/identifier"}, "source_hash": {"$ref": "#/$defs/identifier"}}}
+        }},
+        "audit_trail_requirements": {"type": "object", "additionalProperties": false, "required": ["hash_algorithm", "nonzero_evidence_required"], "properties": {"hash_algorithm": {"enum": ["keccak256", "sha256"]}, "nonzero_evidence_required": {"const": true}, "scope": {"$ref": "#/$defs/text"}}}
+      }
+    },
+    "completeAudit": {"allOf": [{"$ref": "#/$defs/audit"}, {"required": ["evidence_templates", "clause_index_registry", "key_execution_nodes", "judicial_log_schema", "audit_trail_requirements"], "properties": {"evidence_templates": {"minItems": 1}, "clause_index_registry": {"minItems": 1}, "key_execution_nodes": {"minItems": 1}}}]}
+  }
+}

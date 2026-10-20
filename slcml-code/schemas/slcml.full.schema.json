@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:slcml:ir:full:2.1.0",
+  "title": "SLCML full-pipeline structural profile",
+  "allOf": [
+    {"$ref": "urn:slcml:ir:2.1.0"},
+    {"properties": {
+      "Audit": {"$ref": "urn:slcml:ir:2.1.0#/$defs/completeAudit"},
+      "Rule": {"items": {
+        "if": {"anyOf": [
+          {"required": ["breach_classification"]},
+          {"required": ["rule_type"], "properties": {"rule_type": {"const": "Penalty"}}},
+          {"required": ["state_machine_transition"], "properties": {"state_machine_transition": {
+            "required": ["possible_end_states"], "properties": {"possible_end_states": {"contains": {"enum": ["Breach", "S_Breach"]}}}
+          }}}
+        ]},
+        "then": {"required": ["state_machine_transition", "procedural_justice", "dispute_unit_template_id"]}
+      }}
+    }}
+  ]
+}

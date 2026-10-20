@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+.env
+.env.*
+!.env.example
+.build/
+.run/
+artifacts/
+cache/
+outputs/
+results/
+*.log

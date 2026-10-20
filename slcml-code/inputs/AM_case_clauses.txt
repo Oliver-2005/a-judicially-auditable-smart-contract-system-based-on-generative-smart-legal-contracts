@@ -1,0 +1,25 @@
+# Hypothetical provenance and dispute clauses for a public AM-Bench build
+
+**Research-use fixture, not a NIST contract.** The underlying build is the publicly documented AMB2022-01 IN718 bridge build B6 on NIST's AMMT. The following agreement is constructed solely to test SLCML's legal-semantic and executable workflow. The depositor, analyst, and reviewer are test roles, not identified real parties. Nominal process values are reference metadata, not manufacturing acceptance limits.
+
+**Clause 1.1 — Data depositor.** The data depositor registers a source fact card for build `AMB2022-01-AMMT-B6`, identifying the public benchmark record and its source URLs. The depositor does not purport to represent NIST or grant rights beyond the public dataset's actual terms.
+
+**Clause 1.2 — Data analyst.** The analyst may use the registered source record only for the declared AM-Bench analysis task and must retain the source identifier when submitting derived results.
+
+**Clause 1.3 — Independent reviewer.** A designated reviewer checks submitted provenance assertions and decides any challenge. For this test, the reviewer is a local oracle role; no real expert or NIST officer is involved.
+
+**Clause 2.1 — Controlled object.** The controlled object is the public AMB2022-01 B6 source fact card. The on-chain contract stores only its cryptographic hash. The card links to NIST's B6 thermocouple CSV, but it is not itself the CSV and does not contain raw measurements.
+
+**Clause 3.1 — Source and machine identity.** A submitted record must identify `AMB2022-01-AMMT-B6`, the registered fact-card hash, and `AMMT`. A mismatch is a provenance discrepancy; it is not a finding that the physical build was unauthorized.
+
+**Clause 3.2 — Declared build metadata.** The record declares NIST's nominal commanded laser power of 285 W and scan speed of 960 mm/s. It also records a chamber-oxygen value below 1000 ppm in the test payload. The first two figures are published nominal settings; the payload oxygen value is illustrative because the raw B6 oxygen series was not obtained. A mismatched declaration triggers review, not automatic judgment about part quality.
+
+**Clause 4.1 — Provisional hold.** On a provenance or metadata discrepancy, the contract freezes its *test* release flag and deposit flag and opens a challenge state. No real funds or production release are controlled.
+
+**Clause 4.2 — Challenge.** The analyst may submit a nonzero evidence hash within an illustrative 24-hour window. This period is a study parameter, not a NIST procedure.
+
+**Clause 4.3 — Review and disposition.** The reviewer may accept a challenge and restore the test release flags, or reject it and record a final test breach state. If no challenge arrives by the deadline, timeout may close the test path. These states have no external legal effect.
+
+**Clause 5.1 — Audit evidence.** At record acceptance, provisional hold, challenge submission, and final disposition, the contract emits a dedicated event containing build identifier, phase, clause index, source-card hash, evidence hash, state, and block timestamp.
+
+**Clause 5.2 — Evidentiary scope.** A chain event records that a hash and a clause index were submitted during a transition. It does not authenticate NIST's raw measurements, prove process conformity, or establish judicial admissibility.
