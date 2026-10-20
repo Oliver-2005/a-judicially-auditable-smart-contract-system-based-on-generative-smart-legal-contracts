@@ -1,0 +1,213 @@
+GF-2025-2616
+
+Data Processing Service Contract (Sample Text)
+
+country Home number according to Bureau
+system Certainly
+city field Supervision Tube total Bureau
+
+July 2025
+
+use illustrate
+
+In accordance with the Civil Code of the People's Republic of China, the Data Security Law of the People's Republic of China, the Personal Information Protection Law of the People's Republic of China, the Cybersecurity Law of the People's Republic of China, the Regulations on the Administration of Network Data Security, and other relevant laws and regulations, in order to safeguard the legitimate rights and interests of the contracting parties, promote data sharing and utilization, facilitate the orderly flow of data, and make it convenient for the contracting parties to use the data, the following explanations are provided:
+I. This contract template is a recommended contract for reference only when the data client and the data service provider enter into a contract .
+II . Before entering into this contract, both parties shall carefully read the entire contents of this contract and determine the optional, supplementary, fill-in, and modifyable contents based on the specific circumstances. Handwritten items shall take precedence. □ The parts are for both parties to negotiate and choose. If both parties agree or choose, mark √ in the blank. If neither party agrees or chooses, mark × in the blank to indicate deletion, and both parties shall bear the legal consequences arising from the conclusion and performance of this contract .
+Third , both parties may modify, supplement or delete the terms of this contract , but shall not violate the mandatory provisions of laws and administrative regulations, violate public order and good morals, or unfairly and unreasonably increase the buyer's liability, exclude or restrict the buyer's rights or reduce or exempt the seller's liability.
+Fourth , both parties shall carefully and comprehensively verify the transaction parties before the transaction. If a party is a person without civil capacity or with limited civil capacity, the contract shall be signed by the guardian.
+V. In the event of any discrepancy between the handwritten and printed text in this contract and its supplementary clauses, supplementary agreements, and attachments, the handwritten text shall prevail. Similarly , in the event of any discrepancy between Arabic numerals and capitalized numerals, the capitalized numerals shall prevail.
+VI . Matters not covered in this contract may be separately agreed upon by the parties in an appendix, which shall form part of this contract.
+VII . Glossary of Terms :
+( a ) Raw data: refers to data that is generated for the first time or collected at the source and has not been processed.
+(ii) Result data: refers to data generated in the form of final product services during data processing activities to achieve the purpose of contract delivery.
+(iii) Process data: This refers to data generated during the data processing activities of contract performance, which is different from the result data. It is generally a byproduct of the contract performance process.
+( iv ) Data entrustment: refers to the entrustment of data rights by the data entrustment party to the entrusted party, and the entrusted party carrying out data processing activities in accordance with the purpose, method and scope agreed with the entrustment party.
+( v ) Data holding rights: refers to the right of the right holder to hold legally acquired data, either by themselves or by entrusting others to hold it on their behalf. This aims to prevent others from illegally or improperly stealing, altering, disclosing, or destroying the data held by the right holder.
+( vi ) Data usage rights: These refer to the rights holder's right to use data for optimizing production and operation, providing social services, or creating derivative data through processing, aggregation, analysis, etc. Generally speaking, usage rights are the rights holder's right to use data internally without distributing it to external parties.
+( vii ) Data management rights: refers to the right of the right holder to provide data to external parties through paid or unpaid means such as transfer, licensing, investment or establishment of security.
+
+special Don't carry Show
+
+I. This contract template applies to activities in which a data client entrusts the data to a service provider, who then processes the data in accordance with the client's instructions and requirements.
+II. The parties to the contract are the data commissioner and the data recipient. If there are multiple parties on one side of the contract, they may be listed as joint commissioners or joint recipients under the " Data Commissioner " and " Data Recipient " sections (additional page) according to their respective roles in the contractual relationship.
+
+Party A ( the client ) :                                        
+Document type: □ Unified Social Credit Code □ Resident Identity Card □ Passport □ Other       
+ID Number:                                              
+Registered address/domicile:                                       
+Legal Representative:             Authorized Agent:                  
+Contact Person:                 Contact number:                    
+Contact address:                                              
+postal code:                Email address:                    
+             
+Party B ( the entrusted party ) :                                        
+Document type: □ Unified Social Credit Code □ Resident Identity Card □ Passport □ Other       
+ID Number:                                             
+Registered address/domicile:                                        
+Legal Representative:             Authorized Agent:                  
+Contact Person:                 Contact number:                    
+Contact address:                                              
+postal code:                Email address:                    
+
+Based on the relevant provisions of the Civil Code of the People's Republic of China and other laws and regulations, and adhering to the principles of security, equality, voluntariness, fairness, and good faith, the parties to this contract have reached a consensus on the data entrustment processing matters and hereby enter into this contract.
+First raw data description
+Party A shall provide Party B with raw data in accordance with the following scope and rules :
+Data Name:                                         .
+Data content:                                         .
+Data scale:                                         .
+Data source:                                         .
+Second result data
+1. Party B shall , through the following method...     This method processes the data to form the final result.
+(1) Data labeling: Classifying, labeling or annotating data to facilitate the training and validation of machine learning models.
+(2) Data storage: storing data on some persistent medium (such as hard disk, solid-state drive, cloud storage service, etc.).
+(3) Data analysis involves organizing, studying, reasoning, and summarizing data using specific techniques and methods, extracting useful information, discovering patterns, and forming conclusions from the data.
+(4) Data cleaning: Identify and correct (or delete) erroneous, duplicate or inaccurate records in the data.
+(5) In the process of operating and maintaining the website, information system and database, store and maintain the data therein.
+(6) Other processing methods (detailed explanation):                    .
+2. The results data generated by Party B in carrying out the entrusted processing activities shall include the following data:
+Result Data 1 Name
+
+Data content description
+
+Data quality requirements
+
+Result Data 2 Name
+
+Data content description
+
+Data quality requirements
+
+Note: Both parties may specify quantitative indicators of data quality in a supplementary agreement, such as standardization, completeness, accuracy, consistency, timeliness, and accessibility.
+3. Party A shall have the right to hold, use, and manage the results data. At the same time, Party A □ agrees □ disagrees to grant Party B □ the right to hold, use , or manage the results data .
+Third process data
+1. The following process data exists in the process of processing and forming the final data by Party B : 
+Serial Number
+Data Name
+Detailed description of data content
+1
+
+2
+
+2. Party A shall enjoy the rights stipulated in the preceding paragraph .     The process data includes: □ Data ownership □ Data usage □ Data management rights . Party B enjoys the rights stipulated in the preceding paragraph.     The data in question can be categorized as follows : □ Data ownership □ Data usage □ Data management rights.
+Article 4 Obligations of Party A and Party B
+1. Party A shall pay the commission fee in a timely manner as agreed in the contract .
+2. Party A guarantees that its provision of data does not infringe upon the legitimate rights and interests of any third party .
+3. If Party A requests corrections or changes to the original data beyond the scope of work stipulated in this contract , resulting in increased processing costs for Party B or a substantial change in the scope of services, the two parties shall negotiate separately.
+4. Party B guarantees that its data processing actions will not infringe upon the legitimate rights and interests of Party A or any third party ; and that the data will be protected from unauthorized access and disclosure during the data processing process .
+5. Without Party A's written consent, Party B shall not modify, copy, or tamper with the data, nor disclose or transfer the data to any unauthorized third party.
+6. Party B shall strictly comply with the data usage guidelines and operational restrictions (if any) provided by Party A, and Party A shall provide necessary assistance.
+7. Party B shall report on the handling of the entrusted matters as required by Party A. Upon termination of the entrustment contract, Party B shall report the results of the entrusted matters.
+8. If Party B dies, loses its civil capacity, or is declared bankrupt or dissolved, resulting in the termination of the agency agreement, Party B 's heirs, estate administrators, legal representatives, or liquidators shall promptly notify Party A.
+9. If Party B receives any of the following information regarding the data entrusted by Party A , or if any of the following situations occur, Party B shall immediately notify Party A :
+( 1 ) Any request from a third party regarding the original data , process data, or result data , including but not limited to access, copying, correction, transfer, deletion, or withdrawal of consent .
+( 2 ) Any complaints, claims, or allegations relating to raw data , process data, result data , and commissioned processing activities .
+( 3 ) A data security incident has occurred or may occur, including but not limited to data leakage, unauthorized access, misuse, tampering, damage, loss, etc.
+Unless expressly authorized by Party A , Party B shall not respond to any of the aforementioned situations on its own. Party B shall promptly and fully cooperate with Party A in responding to or taking measures in any of the aforementioned situations. In the event of a data security incident, Party B shall immediately take remedial measures, promptly inform Party A of the details of the incident and the emergency measures taken, assist Party A in properly handling the data security incident, and fulfill its relevant reporting and notification obligations.
+10. Upon termination of this contract, Party B shall dispose of the data in accordance with the following instructions from Party A :                                                   .
+5 Restrictions on Entrusted Processing
+1. Party B shall only conduct processing activities within the purpose, method, and scope of the entrusted data processing , and shall not expand, limit, or otherwise change the scope of the entrusted data processing. During the execution of this contract, if it is necessary to change the established scope of the entrusted data processing in accordance with legal provisions or actual circumstances, the relevant party shall proactively propose this to the other party, and both parties shall confirm it in writing.
+2. In addition to the above restrictions, Party B's processing activities of the original data shall also comply with the following requirements:            ( You can fill in the processing period, processing environment, and other requirements .)
+6 Data Delivery
+1. Party B shall, in accordance with the provisions of the [ number ]th [year] , [details].     The results data and process data whose ownership belongs to Party A shall be delivered to Party A in this manner .
+(1) Electronic delivery
+Online data transmission can be achieved through the following methods :
+□ Cloud storage ;
+Application Programming Interface ( API );
+□ Other cloud storage services :                                . 
+(2) Physical delivery
+Offline data delivery can be achieved through the following methods :
+hard drives, optical discs, and USB flash drives ;
+□ Other:                                            .
+2. Data delivery completion time:                               .
+If the parties have not agreed on a data delivery time, data delivery shall be deemed complete when the following conditions are met:
+(1) Electronic delivery: When the data enters the data space designated by both parties for delivery and Party B provides Party A with a link, key, and documentation (if any).
+(2) Physical delivery: When the recipient signs for the delivery by personal delivery , express delivery , or registered mail .
+3. If a specific recipient needs to be designated for data delivery, all parties agree that the designated data recipient of Party A is...      (Name/Position ) .
+7 Data Acceptance
+1. The data acceptance period is...                                   .
+2. Party A shall complete the acceptance inspection within the agreed inspection period. If Party A fails to raise any objection within the agreed period, the acceptance inspection shall be deemed successful , unless Party B becomes aware at the time of delivery that the data provided does not conform to the agreement.
+3. If Party A raises objections to the data , it shall provide a detailed written explanation and evidence, and both parties shall jointly verify the objections. If Party A puts the data into actual use before completing acceptance , it shall be deemed that Party A accepts the corresponding data as meeting the usage requirements , unless the data quality cannot be determined without use.
+Article 8 Remedial Measures for Data Quality Issues
+If Party A discovers during the acceptance period that the data quality does not meet the requirements of Article 2 and other clauses of this contract and notifies Party B to make corrections, Party B shall, from the date of receiving the notification, [ take corrective action].     The revised or supplementary data shall be provided within [number] working days to comply with the contract. If Party B is unable to revise or supplement the data within the specified time due to objective reasons, both parties shall negotiate a solution amicably. If the negotiation fails, Party A shall have the right to choose one of the following solutions :
+( 1 ) Party A shall settle service fees with Party B according to the data that has passed the acceptance inspection, either proportionally or by value ; Party B shall refund the service fees for the data that has not passed the acceptance inspection from the amount already paid by Party A.
+( 2 ) If the number/content of data that Party B fails to pass acceptance exceeds     % of, and from the date of receiving the notification     If the contract cannot be corrected or supplemented within one working day, Party A has the right to terminate the contract by giving written notice to Party B.
+Article 9 Payment of Fees
+1. Fee Calculation ( Including Tax) : Both parties confirm that the fee will be calculated according to the following...     There are several ways to calculate the cost .
+( 1 ) Fixed price: The total amount payable by Party A to Party B is      (capital:                                                  ) .
+( 2 ) Pricing based on quantity: The pricing method is based on the actual amount of work done, and Party A shall charge according to the amount of work done.                                              The fee shall be paid to Party B in accordance with the standard .
+2. Payment Method : Party A shall make payment according to the following terms :     Payment shall be made to Party B in one of the following ways .
+(1) Installment payment
+First payment: From the date of contract signing   Within [number] working days, Party A shall pay Party B the total amount of the fee.   %, amount is   (capital:                  ).
+Second transaction: From the date of full data delivery   Within [number] working days, Party A shall pay Party B the total amount of the fee.   %, amount is   (capital:                ).
+Third entry: From the date of acceptance   Within [number] working days, Party A shall pay Party B the total amount of the fee.   %, amount is   (capital:                   ).
+(2) Lump sum payment
+□ From the date of contract signing □ From the date of acceptance     Within one working day, Party A shall pay Party B all fees in one lump sum .
+3. Party B shall issue Party A a valid VAT invoice of equal value in accordance with the law . If the tax rate changes due to changes in national tax policies, the changed tax rate shall prevail.
+4. Party B's receiving account information :
+Account Name:                                         ;
+Opening Bank:                                         ;
+account:                                         .
+5. Invoicing information from Party A :
+Company Name:                                         ;
+Taxpayer Identification Number:                                     ;
+land    site:                                         ;
+Contact number:                                         ;
+Opening Bank:                                         ;
+account:                                         .
+10 Sub-delegation
+1. Except as otherwise agreed in this Contract or by both parties, without the prior written consent of Party A , Party B shall not delegate all or part of the matters entrusted under this Contract to any third party.
+2. Party A agrees to Party B's sub-delegation on the following conditions:                      .
+3. Unless otherwise agreed by both parties, the scope of sub-delegation by Party B (including but not limited to the purpose and method of processing, processing location, processing period, etc.) shall not exceed the scope of data processing entrusted by Party A to Party B. Party B shall ensure that the data processing activities of the sub-delegated party comply with the provisions of the law and this contract. For data processing activities directly instructed by Party B to the sub-delegated party, if the sub-delegated party commits any infringement or breach of contract, Party B shall bear joint and several liability with the sub-delegated party.
+Article 11 Data Retention, Destruction and Return
+1. Unless otherwise stipulated in this Agreement or with the prior written consent of Party A , Party B shall not copy or retain any data obtained under this Agreement (including but not limited to original data and process data and result data generated during the entrusted processing) or any copies thereof. If Party B needs to copy or retain copies of the aforementioned data for the normal operation of data processing activities or to meet the requirements of laws and regulations, Party B shall notify Party A in writing in advance of such need or requirement and the status of the retained data copies. After such need or requirement is met, Party B shall promptly destroy or return the data copies and provide proof.
+2. Unless otherwise stipulated in this Contract or with the prior written consent of Party A , upon the expiration of the entrusted processing period, termination of this Contract for any reason , or at the request of Party A (whichever occurs first), Party B shall promptly destroy or return all data involved in the entrusted processing (including but not limited to original data and process data and result data generated during the entrusted processing).
+The data and its copies shall not be retained , and proof that the data has been destroyed or returned shall be provided.
+3. When returning data, Party B shall assist Party A in properly receiving and processing the data, and provide sufficient guidance and convenience.
+12 Intellectual Property and Trade Secrets
+1. During the performance of this contract, if any product or service (including but not limited to software, databases, information systems, servers, algorithms, models, etc.) involves the intellectual property rights or trade secrets of the parties to this contract or any third party:
+(1) Each party shall ensure that the products or services provided by it do not infringe upon the legitimate rights and interests of any third party.
+(2) Each party shall respect the intellectual property rights and trade secrets of the other party or third-party rights holders in the products or services provided by the other party, and ensure that no act infringes upon the intellectual property rights and trade secrets of the other party or third-party rights holders.
+2. If one party infringes on intellectual property rights or trade secrets, causing losses to the other party or requiring the other party to bear liability for compensation to a third party , the injured party has the right to demand that the infringing party bear the corresponding liability for compensation.
+Thirteen Confidentiality Requirements
+Each party shall disclose any trade secrets (including technical and business information) and other confidential information learned during the contract formation process , such as...              Regardless of whether this contract is established, the information shall not be disclosed or misused until it becomes public information through legal channels .
+14 Data Security Requirements
+1. All parties shall strictly process raw data , process data, and result data in accordance with the Data Security Law of the People's Republic of China, the Personal Information Protection Law of the People's Republic of China, the Cybersecurity Law of the People's Republic of China, the Regulations on the Administration of Network Data Security, and other relevant laws and regulations .
+2. All parties shall take necessary technical and management measures to ensure data security and prevent data leakage, loss, or unauthorized access . In the event of a data breach or other security incident, the parties shall immediately take remedial measures to mitigate the damage and promptly notify the other party of the details of the incident and the emergency measures taken.
+3. If the data processing under this contract involves cross-border transmission, it shall be handled in accordance with the relevant laws, regulations or policies on cross-border data flow , and all parties shall have the obligation to cooperate with each other .
+15 Liability for Breach of Contract
+further losses are still caused to the other party after continued performance or remedial measures are taken, the breaching party shall compensate for the losses in accordance with the law .
+2. After one party breaches the contract, the other party shall take appropriate measures to prevent further loss ; if the other party fails to take appropriate measures and the loss increases, the breaching party shall not be liable for compensation for the increased loss. Reasonable expenses incurred by the other party in preventing the loss from increasing shall be borne by the breaching party .
+3. Anyone who discloses or improperly uses trade secrets or confidential information, causing losses to the other party, shall bear the liability for compensation .
+4. If the breaching party is unable to continue performing the contract,                       .
+16 Modification and Termination of Contract
+1. Both parties agree in writing to supplement, amend, or terminate this contract.
+2. Neither party may assign its rights or obligations under this Agreement to any third party without the other party’s prior written consent .
+3. If the purpose of the contract cannot be achieved due to force majeure, the parties have the right to terminate the contract. A party asserting termination of the contract shall promptly notify the other parties.
+4. Under any of the following circumstances, Party A shall have the right to unilaterally terminate the contract:
+(1) If Party B violates the processing purpose, processing method or processing scope stipulated in this Contract in processing the data , or if there are major problems in the legality, compliance, ownership or other aspects of the result data , which affects the achievement of the purpose of the Contract.
+(2) If Party B fails to perform its main obligations under this Contract and fails to perform its obligations even after being urged by Party A, the performance period exceeds [a certain number of days].     One working day .
+(3) The breach of contract by Party B results in a major leak or misuse of the original data .
+5. Under any of the following circumstances, Party B shall have the right to unilaterally terminate this contract:
+(1) The original data that Party A requested to be processed has significant issues in terms of legality, compliance, and ownership .
+(2) Party A has failed to perform its main obligations under the contract and, despite being urged by Party B, still fails to perform its obligations for more than [amount missing].     One working day .
+17 Dispute Resolution
+, controversy or claim arising out of or relating to this Agreement shall be resolved by the parties through friendly consultation or by entrusting a third party to mediate .
+2. If negotiation or mediation fails, the following procedure shall apply .     One way to solve it:
+(1) To                                 The People's Court filed a lawsuit.
+(2) To                           The arbitration commission applied for arbitration.
+18 Other Provisions
+1. This contract shall come into effect on the date of signature and seal by both parties and shall remain valid until [date to be filled in].    Year    moon    Stop today.
+2. This contract is made in duplicate.   Each party holds its own share.   Each copy has the same legal effect.
+3. The invalidity or unenforceability of certain clauses in this contract shall not affect the other clauses of the contract.
+4. This Contract constitutes the complete agreement between the parties regarding the entrusted data processing and supersedes all prior oral or written agreements, understandings and communications between the parties . In the event of any inconsistency between the foregoing and the provisions of this Contract, the provisions of this Contract shall prevail .
+( Continued on the signature page )
+The following is the signature page of this contract; there is no main text. This contract was signed on [Date].     ( Please specify the city)     (Fill in the specific district/county )
+
+Party A:                        (stamp)
+Party B:                        (stamp)
+Legal representative or authorized representative:              
+( Signature/Seal)
+Legal representative or authorized representative:               
+(Signature/Seal)
+     Year     moon     day
+     Year     moon     day

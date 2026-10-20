@@ -1,0 +1,230 @@
+GF-2025-2618
+
+Data brokerage service contract (sample text)
+
+country Home number according to Bureau
+system Certainly
+city field Supervision Tube total Bureau
+
+July 2025
+
+use illustrate
+
+In accordance with the Civil Code of the People's Republic of China, the Data Security Law of the People's Republic of China, the Personal Information Protection Law of the People's Republic of China, the Cybersecurity Law of the People's Republic of China, the Regulations on the Administration of Network Data Security, and other relevant laws and regulations, in order to safeguard the legitimate rights and interests of the contracting parties, promote data sharing and utilization, facilitate the orderly flow of data, and make it convenient for the contracting parties to use the data, the following explanations are provided:
+I. This contract template is a recommended template and is intended for reference only when data clients and data intermediaries enter into contracts .
+II . Before entering into this contract, both parties shall carefully read the entire contents of this contract and determine the optional, supplementary, fill-in, and modifyable contents based on the specific circumstances. Handwritten items shall take precedence. □ The parts are for both parties to negotiate and choose. If both parties agree or choose, mark √ in the blank. If neither party agrees or chooses, mark × in the blank to indicate deletion, and both parties shall bear the legal consequences arising from the conclusion and performance of this contract .
+Third , both parties may modify, supplement or delete the terms of this contract , but shall not violate the mandatory provisions of laws and administrative regulations, violate public order and good morals, or unfairly and unreasonably increase the buyer's liability, exclude or restrict the buyer's rights or reduce or exempt the seller's liability.
+Fourth , both parties shall carefully and comprehensively verify the transaction parties before the transaction. If a party is a person without civil capacity or with limited civil capacity, the contract shall be signed by the guardian.
+V. In the event of any discrepancy between the handwritten and printed text in this contract and its supplementary clauses, supplementary agreements, and attachments, the handwritten text shall prevail. Similarly , in the event of any discrepancy between Arabic numerals and capitalized numerals, the capitalized numerals shall prevail.
+VI . Matters not covered in this contract may be separately agreed upon by the parties in an appendix, which shall form part of this contract.
+VII . Glossary of Terms:
+( a ) Subject data: refers to a series of data corresponding to the intermediary services stipulated in this contract.
+( ii ) Data intermediary services: refers to the transaction matching activities provided by the intermediary to the client, such as market promotion, customer connection, and contract signing, in accordance with the contract.
+( iii ) Data holding rights: refers to the right of the right holder to hold legally acquired data, either by themselves or by entrusting others to hold it on their behalf. This aims to prevent others from illegally or improperly stealing, altering, disclosing, or destroying the data held by the right holder.
+( iv ) Data usage rights: These refer to the rights holder's right to use data for optimizing production and operation, providing social services, or creating derivative data through processing, aggregation, analysis, and other means. Generally speaking, usage rights are the rights holder's right to use data internally without distributing it to external parties.
+( v ) Data management rights: refers to the right of the right holder to provide data to external parties through paid or unpaid means such as transfer, licensing, investment or establishment of security.
+
+special Don't carry Show
+
+I. This contract template applies to the activities of data intermediaries in providing transaction matching services to facilitate data transactions .
+II. The contracting parties are the data client and the data intermediary. If there are multiple parties on one side of the contract, they may be listed as joint clients or joint intermediaries under the " Data Client " or " Data Intermediary " categories (additional item) according to their respective roles in the contractual relationship.
+
+Party A ( the client ) :                                       
+Document type: □ Unified Social Credit Code □ Resident Identity Card □ Passport □ Other      
+ID Number:                                             
+Registered address/domicile:                                       
+Legal Representative:             Authorized Agent:                 
+Contact Person:                 Contact number:                   
+Contact address:                                             
+postal code:               Email address:                   
+
+Party B ( the intermediary ) :                                        
+Document type: □ Unified Social Credit Code □ Resident Identity Card □ Passport □ Other       
+ID Number:                                             
+Registered address/domicile:                                       
+Legal Representative:             Authorized Agent:                 
+Contact Person:                 Contact number:                   
+Contact address:                                              
+postal code:               Email address:                     
+
+(Add or delete according to the number of signing parties)
+Party C:                                                  
+Document type: □ Unified Social Credit Code □ Resident Identity Card □ Passport □ Other       
+ID Number:                                              
+Registered address/domicile:                                       
+Legal Representative:             Authorized Agent:                  
+Contact Person:                 Contact number:                    
+Contact address:                                              
+postal code:                Email address:                    
+
+Ding Fang:                                                  
+Document type: □ Unified Social Credit Code □ Resident Identity Card □ Passport □ Other       
+ID Number:                                              
+Registered address/domicile:                                       
+Legal Representative:             Authorized Agent:                  
+Contact Person:                 Contact number:                    
+Contact address:                                              
+postal code:               Email address:                    
+
+the relevant provisions of the Civil Code of the People's Republic of China and other laws and regulations , and adhering to the principles of equality, voluntariness, fairness, and good faith , the parties to this contract have reached an agreement on matters related to data intermediary services and hereby enter into this contract.
+The first item's data description
+The scope of the transaction matching service entrusted by Party A to Party B is as follows :
+Target Data 1 Name
+
+Data source
+
+Data scale
+
+Data delivery format
+□ Dataset​   □ API   □ Other
+Target Data 2 Name
+
+Data Name
+
+Data scale
+
+Data source
+
+Data delivery format
+□ Dataset​   □ API   □ Other
+Target Data 3 Name
+
+Data Name
+
+Data scale
+
+Data source
+
+Data delivery format
+□ Dataset​   □ API  □ Other
+2. Term and Scope of Data Intermediary Services
+1. In order to facilitate the transaction of the target data, Party B , from [date / time]...    Year    moon    From the date    Year    moon    The following is provided by Party A :   Intermediary services:
+(1) Promote the target data in the market, including but not limited to listing on the exchange , holding offline promotional activities, industry exhibitions , etc.
+Assistance will be provided in handling the property registration of the subject data , and the registration agency will be jointly selected by both parties .
+Introduce the target data to potential data requesters through methods including but not limited to telephone communication, email, and face-to-face meetings. The content of the introduction should include key information such as data scale, application scenarios, and update frequency .
+the client with market information, reports on potential data demanders /data providers , and transaction opportunities .
+Facilitate the transaction of the target data and assist in the signing and performance of the data transaction contract . Specific steps include, but are not limited to, organizing meetings between the two parties, coordinating negotiations, drafting the contract draft, reviewing the contract terms , and certifying the delivery of data , so as to assist in the smooth signing and performance of the contract .
+2. Party B shall comply with the following provisions :     One way to provide intermediary services:
+(1) Committed performance baseline
+Marketing Promotion Results: Party B promises that the marketing promotion will cover [the following areas].               In accordance with the "Initiative on Mutual Recognition and Interoperability of Data Trading Institutions," efforts are being made to promote the " one-stop listing and nationwide mutual recognition " of target data .              Report the progress of the promotion to Party A (fill in the specific time or frequency) .
+Client connection success rate: Party B promises a client connection success rate of 100%.        .
+Other service quality standards:                                  .
+( 2 ) No performance baseline commitment
+Party B shall fully leverage its own advantages to provide intermediary services to Party A , promote the listing of target data in one place and mutual recognition nationwide in accordance with the " Initiative on Mutual Recognition and Interoperability of Data Trading Institutions " , and promptly report the progress of promotion to Party A.
+3. During the service period, Party A may □ entrust other intermediaries to provide intermediary services with the same or similar content, and promptly inform Party B of the relevant information .
+Party A □ does □ agree that Party B may entrust the services stipulated in this contract to a third party.
+3 Data Intermediary Service Fee
+1. From the date on which Party A reaches a transaction and signs a data transaction contract with the data requester /provider and other relevant parties through the facilitation of Party B.     Within one working day, Party A shall pay Party B the data intermediary service fee.
+2. The amount of data intermediary service fees paid by Party A to Party B shall be as follows :   Calculation in one of the following ways :
+(1) Based on the contract amount under the data transaction contract     % as a data intermediary service fee .
+(2) According to a fixed amount     (capital:                (Including tax) .
+(3) Other                                        .
+3. If Party B fails to facilitate the conclusion of the contract, the necessary expenses incurred by Party B in providing data intermediary services shall be borne by □ Party A □ Party B. The calculation standard for necessary expenses is as follows:            ( Payment will be made according to the actual expenditure vouchers provided by Party B ) .
+4. Party B shall issue Party A a valid VAT invoice of equal value in accordance with the law . If the tax rate changes due to changes in national tax policies, the changed tax rate shall prevail.
+5. Party B's receiving account information :
+Account Name:                                        ;
+Opening Bank:                                        ;
+Account    Number:                                         .
+6. Invoicing information of Party A :
+Company Name:                                         ;
+Taxpayer Identification Number:                                     ;
+land    site:                                         ;
+Contact number:                                         ;
+Opening Bank:                                         ;
+account:                                         .
+4 Rights of All Parties
+1. Party A has the right to require Party B to provide data intermediary services in accordance with the contract .
+2. Party A has the right to require Party B to report on the progress of the intermediary activities in a timely manner .
+3. Party A has the right to require Party B to truthfully disclose information and circumstances related to the conclusion of the data transaction contract .
+4. If Party A enters into a contract with a third party without utilizing the opportunity or intermediary services provided by Party B , Party A shall not be required to pay Party B an intermediary service fee.
+5. Party B has the right to demand that Party A pay the data intermediary service fee in a timely and full manner as agreed .
+6. Party B has the right to request Party A to provide necessary assistance, including providing relevant information or certificates related to the target data, so that Party B can conduct necessary reviews.
+7. Party A confirms that it □ grants □ does not grant Party B the right to operate the data . If Party A grants Party B the right to operate the data, Party B shall acquire the right to operate the data upon signing this contract with Party A , and shall exercise the right to operate the data within the scope of authorization as required by Party A. Party A shall cooperate with Party B in exercising the right to operate the data and ensure that the data is provided to third parties as agreed.
+5 Obligations of All Parties
+1. If Party A uses the transaction opportunities or intermediary services provided by Party B to bypass Party B and directly enter into a data transaction contract, Party A is obligated to pay Party B the data intermediary service fee in accordance with the law .
+2. Party A ensures that the source of the target data is legal, the ownership is clear, and the holding is compliant .
+3. Party B shall provide data intermediary services in accordance with the provisions of laws and regulations and the terms of this contract .
+4. Party B shall provide Party A with timely, comprehensive, and accurate information on market conditions, transaction opportunities, and potential demanders.
+5. If Party B provides intermediary services for concluding data transaction contracts, it shall provide Party A with relevant consultation and services for concluding contracts, and assist Party A in concluding contracts with third parties and handling relevant procedures.
+6. Other obligations stipulated by law or this contract.
+6 Data Security Requirements
+All parties shall strictly handle the target data in accordance with the Data Security Law of the People's Republic of China, the Personal Information Protection Law of the People's Republic of China, the Cybersecurity Law of the People's Republic of China, the Regulations on the Administration of Network Data Security, and other relevant laws and regulations.
+7 Intellectual Property and Trade Secrets
+1. Party A guarantees that the data ( set ) provided will not infringe upon the intellectual property rights of any third party. If Party B suffers losses due to the infringement of the intellectual property rights of any third party by the data ( set ) provided by Party A , Party A shall be responsible for resolving the dispute and compensating Party B for all losses suffered as a result.
+2. Party B shall take reasonable preventive measures to protect Party A 's intellectual property rights from infringement .
+3. The parties shall disclose any trade secrets (including technical and business information) and other confidential information agreed upon by both parties that they learn during the conclusion of this contract , such as ...            Regardless of whether this contract is established, the information shall not be disclosed or misused until it becomes public information through legal channels .
+Article 8 Liability for Breach of Contract
+1. The breaching party shall be liable for continuing to perform the contract and taking remedial measures. If further losses are still caused to the other party after continued performance or remedial measures are taken, the breaching party shall compensate for those losses.
+2. After one party breaches the contract, the other party shall take appropriate measures to prevent further loss ; if the other party fails to take appropriate measures and the loss increases, the breaching party shall not be liable for compensation for the increased loss. Reasonable expenses incurred by the other party in preventing the loss from increasing shall be borne by the breaching party .
+3. Anyone who discloses or improperly uses trade secrets or confidential information, causing losses to the other party, shall bear the liability for compensation.
+4. If the breaching party is unable to continue performing the contract,                          .
+Article 9 Modification and Termination of Contract
+1. This contract may be supplemented, amended, or terminated with the written unanimous consent of all parties involved.
+2. Neither party may assign its rights or obligations under this Agreement to any third party without the other party’s prior written consent .
+3. If the contract cannot be performed due to force majeure, this contract shall be terminated on the date of occurrence of the force majeure. A party wishing to terminate the contract shall promptly notify the other parties.
+4. Under any of the following circumstances, Party B shall have the right to unilaterally terminate this contract:
+problems with the legality, compliance and ownership of the target data .
+(2) Party A has failed to perform its main obligations under the contract and, despite being urged by Party B, still fails to perform its obligations for more than [amount missing].     One working day .
+5. Under any of the following circumstances, Party A shall have the right to unilaterally terminate this contract:
+(1) The breach of contract by Party B results in a major disclosure or misuse of the subject data .
+(2) If Party B fails to perform its main obligations under the contract and continues to fail to perform its obligations after being urged by Party A , the period of time exceeds [a certain threshold].     One working day .
+10 Dispute Resolution
+, controversy or claim arising out of or relating to this Agreement shall be resolved by the parties through friendly consultation or by entrusting a third party to mediate .
+2. If negotiation or mediation fails, the following procedure shall apply.     One way to solve it:
+(1) To                                The People's Court filed a lawsuit.
+(2) To                          The arbitration commission applied for arbitration.
+Article 11 Other Provisions
+1. This contract shall come into effect on the date of signature and seal by both parties and shall remain valid until [date to be filled in].    Year    moon    Stop today.
+2. This contract is made in duplicate.   Each party holds its own share.   Each copy has the same legal effect.
+3. The invalidity or unenforceability of certain clauses in this contract shall not affect the other clauses of the contract.
+4. This Agreement constitutes the entire agreement between the parties regarding data intermediary services and supersedes all prior oral or written agreements, understandings and communications between the parties . In the event of any inconsistency between the foregoing and the provisions of this Agreement, the provisions of this Agreement shall prevail .
+( Continued on the signature page )
+The following is the signature page of this contract; there is no main text. This contract was signed on [Date].       ( Please specify the city)         (Fill in the specific district/county )
+
+Party A:                         (stamp)
+Party B:                         (stamp)
+Legal representative or authorized representative:                
+( Signature/Seal)
+Legal representative or authorized representative:                 
+(Signature/Seal)
+     Year     moon     day
+     Year     moon     day
+
+Detailed description of the data in the appendix
+
+Target data name
+　
+Application scenarios
+　
+Industry Classification
+　
+Does it belong to a corpus?
+whether
+
+Modal
+
+Application areas
+　
+Target data description
+　
+Source method
+　
+Field 1 Name
+　
+Field 1 Description
+　
+Example value of field 1
+　
+...
+　
+Coverage
+　
+Storage size
+　
+Update frequency
+　
+Data scale
+　
+Data delivery method
+□ Dataset​ □ API  □ Other
+*The above information is for external display purposes.

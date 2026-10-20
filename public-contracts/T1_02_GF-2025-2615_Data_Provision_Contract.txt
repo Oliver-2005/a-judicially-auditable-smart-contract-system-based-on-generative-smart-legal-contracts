@@ -1,0 +1,343 @@
+GF-2025-2615
+
+Data Provision Contract (Sample Text)
+
+country Home number according to Bureau
+system Certainly
+city field Supervision Tube total Bureau
+
+July 2025
+
+use illustrate
+
+In accordance with the Civil Code of the People's Republic of China, the Data Security Law of the People's Republic of China, the Personal Information Protection Law of the People's Republic of China, the Cybersecurity Law of the People's Republic of China, the Regulations on the Administration of Network Data Security, and other relevant laws and regulations, in order to safeguard the legitimate rights and interests of the contracting parties, promote data sharing and utilization, facilitate the orderly flow of data, and make it convenient for the contracting parties to use the data, the following explanations are provided:
+I. This contract template is a recommended contract for reference only when data providers and data receivers enter into contracts .
+II . Before entering into this contract, both parties shall carefully read the entire contents of this contract and determine the optional, supplementary, fill-in, and modifyable contents based on the specific circumstances. Handwritten items shall take precedence. □ The parts are for both parties to negotiate and choose. If both parties agree or choose, mark √ in the blank. If neither party agrees or chooses, mark × in the blank to indicate deletion, and both parties shall bear the legal consequences arising from the conclusion and performance of this contract .
+Third , both parties may modify, supplement or delete the terms of this contract , but shall not violate the mandatory provisions of laws and administrative regulations, violate public order and good morals, or unfairly and unreasonably increase the buyer's liability, exclude or restrict the buyer's rights or reduce or exempt the seller's liability.
+Fourth , both parties shall carefully and comprehensively verify the transaction parties before the transaction. If a party is a person without civil capacity or with limited civil capacity, the contract shall be signed by the guardian.
+V. In the event of any discrepancy between the handwritten and printed text in this contract and its supplementary clauses, supplementary agreements, and attachments, the handwritten text shall prevail. Similarly , in the event of any discrepancy between Arabic numerals and capitalized numerals, the capitalized numerals shall prevail.
+VI . Matters not covered in this contract may be agreed upon separately by the parties in an appendix.
+VII . Glossary of Terms:
+( a ) Target data: refers to the target data provided by the data provider to the data recipient in this data provision activity .
+(ii) Data provision: refers to the act of a data provider supplying data to a data recipient through paid or unpaid means such as transfer, licensing (including sharing) .
+( iii ) Derivative data: refers to data that data processors have the right to use, which, under the premise of protecting the legitimate rights and interests of all parties, achieve substantial changes in the content, form, and structure of the data through the use of professional knowledge processing, modeling analysis, key information extraction, etc., thereby significantly enhancing the value of the data.
+( iv ) Data property rights : refers to the property rights enjoyed by the right holder over specific data, including data ownership rights, data usage rights, data management rights, etc.
+( v ) Data holding rights: refers to the right of the right holder to hold legally acquired data, either by themselves or by entrusting others to hold it on their behalf. This aims to prevent others from illegally or improperly stealing, altering, disclosing, or destroying the data held by the right holder.
+( vi ) Data usage rights: These refer to the rights holder's right to use data for optimizing production and operation, providing social services, or creating derivative data through processing, aggregation, analysis, etc. Generally speaking, usage rights are the rights holder's right to use data internally without distributing it to external parties.
+( vii ) Data management rights: refers to the right of the right holder to provide data to external parties through paid or unpaid means such as transfer, licensing, investment or establishment of security.
+
+special Don't carry Show
+
+I. This contract text applies to the provision of data by the data provider to the data recipient through paid or unpaid means such as transfer, licensing ( including sharing ), etc., and supports different forms of data provision such as APIs and datasets .
+II. The contracting parties are the data provider and the data receiver. If there are multiple parties on one side of the contract, they may be listed as joint providers or joint receivers under the "Data Provider" and "Data Receiver" sections (additional item) according to their respective roles in the contractual relationship.
+
+Party A ( Recipient ) :                                        
+Document type: □ Unified Social Credit Code □ Resident Identity Card □ Passport □ Other       
+ID Number:                                              
+Registered address/domicile:                                        
+Legal Representative:             Authorized Agent:                  
+Contact Person:                 Contact number:                     
+Contact address:                                               
+postal code:                Email address:                    
+
+Party B ( the provider ) :                                        
+Document type: □ Unified Social Credit Code □ Resident Identity Card □ Passport □ Other       
+ID Number:                                              
+Registered address/domicile:                                        
+Legal Representative:             Authorized Agent:                   
+Contact Person:                 Contact number:                     
+Contact address:                                               
+postal code:                Email address:                    
+
+Based on the relevant provisions of the Civil Code of the People's Republic of China and other laws and regulations, and adhering to the principles of equality, voluntariness, fairness, and good faith , the parties to this Contract have reached a consensus on the provision of data and hereby enter into this Contract.
+The first item 's data description
+Party B shall provide Party A with the subject matter data in accordance with the following scope and rules (additional pages or signed attachments may be attached):
+1. Data Name:                                       .
+2. Data Content:                                       .
+3. Data scale:                                       .
+4. Data source:                                       .
+5. Data time range:
+□     Year     moon     From the date     Year     moon     day ;
+Updated regularly or irregularly .
+2 Data Property Rights Arrangement
+1. Party B hereby undertakes that its ownership rights to the subject data are as follows :
+Data Name
+Types of data property rights
+Scope and limitations of Party B's rights
+Target data
+□ Data holding rights
+
+□ Data usage rights
+
+□ Data Management Rights
+
+2. Both parties agree that Party A's ownership rights to the received target data are as follows :
+Data Name
+Types of data property rights
+Scope and limitations of Party A's rights
+Target data
+□ Data holding rights
+
+□ Data usage rights
+
+□ Data Management Rights
+
+restrictions , Party A's use of the target data shall also comply with the following requirements:                                                .
+3. If the target data is to be registered, it is agreed that...      Upon completion of the initial registration, Party A may, in accordance with the relevant management regulations for data property rights registration and the authorization of this contract, apply for the following registrations: □ Transfer registration □ License registration.
+4. Ownership of Derivative Data : Derivative data (excluding the original target data) generated by Party A after processing the target data obtained from Party B shall be owned by Party A , who has the right to decide its usage and scope. However , the following exceptions apply:             .
+Article 3 Obligations of Party A and Party B
+1. Party A ensures that its use of data does not infringe upon the legitimate rights and interests of Party B or any third party.
+2. Party A shall guarantee data security in accordance with the law and the provisions of this contract .
+3. Upon termination of the contract, Party A shall dispose of the data in accordance with the following instructions from Party B :          .
+4. Party B guarantees that its provision of data will not infringe upon the legitimate rights and interests of Party A or any third party.
+5. Party B shall take reasonable technical and management measures to ensure the security of data during the provision and transmission process.
+6. Upon termination of the contract , Party B shall provide necessary guidance and assistance to Party A in its appropriate handling of the data .
+Article 4 Data quality standards
+Party B undertakes to provide data in accordance with the following standards ( data quality may be agreed upon with reference to relevant standards in terms of data standardization, completeness, accuracy, consistency, timeliness, and accessibility, or may be specified separately in the contract appendix ) :                       .
+5 Data Delivery
+1. Party B shall, in accordance with the provisions of the [ number ]th [year], [details].      This method provides data to Party A.
+(1) Electronic delivery
+Online data transmission can be achieved through the following methods :
+□ Cloud storage ;
+Application Programming Interface ( API ) ;
+□ Other cloud storage services :                                 .
+(2) Physical delivery
+Offline data delivery can be achieved through the following methods :
+hard drives, optical discs, and USB flash drives ;
+□ Other:                                             . 
+2. Data delivery completion time:                                 .
+If no data delivery time is specified, data delivery shall be deemed complete when the following conditions are met:
+(1) For electronic delivery: When data enters the data space designated by both parties for delivery and Party B provides Party A with a link, key, and documentation (if any) .
+(2) For physical delivery: When using personal delivery , express delivery, or registered mail, the recipient signs for receipt .
+3. If a specific recipient needs to be designated for data delivery , all parties agree that the designated data recipient of Party A is...      (Name/Position ) .
+6 Payment of Fees
+1. Fee Calculation ( Including Tax) : Both parties confirm that the fee will be calculated according to the following...   There are several ways to calculate the cost .
+( 1 ) Fixed price: The total amount payable by Party A to Party B is     (capital:                                                  ) .
+( 2 ) Pricing by volume: Fees will be calculated based on actual usage, and Party A shall pay Party B the fees according to the following standards :                                         .
+2. Payment Method : Party A shall make payment in accordance with Article [number missing].      The payment shall be made to Party B in one of the following ways .
+(1) Installment payment
+First payment: From the date of contract signing    Within [number] working days, Party A shall pay Party B the total amount of the fee.   %, amount is   (capital:                 ).
+Second transaction: From the date of full data delivery     Within [number] working days, Party A shall pay Party B the total amount of the fee.   %, amount is   (capital:              ).
+Third entry: From the date of acceptance    Within [number] working days, Party A shall pay Party B the total amount of the fee.   %, amount is   (capital:                  ).
+(2) Lump sum payment
+□ From the date of contract signing □ From the date of acceptance     Within one working day, Party A shall pay Party B all fees in one lump sum .
+3. Party B shall issue Party A a valid VAT invoice of equal value in accordance with the law . If the tax rate changes due to changes in national tax policies, the changed tax rate shall prevail.
+4. Party B's receiving account information :
+Account Name:                                         ;
+Opening Bank:                                         ;
+account:                                         .
+5. Invoicing information from Party A :
+Company Name:                                         ;
+Taxpayer Identification Number:                                     ;
+land    site:                                         ;
+Contact number:                                         ;
+Opening Bank:                                         ;
+account:                                         .
+6. Other payment methods:
+Both parties agree to use the following non-price methods (such as data exchange, technical services) instead of fees:                                               .
+7 Data Acceptance
+1. The inspection period for data acceptance is...                             .
+2. Party A shall complete the acceptance inspection within the agreed inspection period. If Party A fails to raise any objection within the period, the acceptance inspection shall be deemed to have passed , unless Party B becomes aware at the time of delivery that the data provided does not conform to the agreement.
+3. If Party A raises objections to the data , it shall provide a detailed written explanation and evidence, and both parties shall jointly verify the objections. If Party A puts the data into actual use before completing acceptance , it shall be deemed to have accepted the corresponding data as qualified , except where the data quality cannot be determined without use.
+Article 8 Remedial Measures for Data Quality Issues
+1. If Party A discovers during the acceptance period that the data quality does not meet the requirements of Article 4 and other clauses, and notifies Party B to make corrections, Party B shall, upon receiving the notification, [take corrective action] .     Provide corrected or supplementary data within one business day to comply with the contract.
+2. Regarding any data quality objections raised by Party A , Party B shall...     The parties shall rectify the situation within [number] business days to achieve the data quality standards stipulated in this contract. In the event of any dispute between the parties regarding the data quality standards stipulated in this contract, they may agree to [details to be provided] .      Assessment, fees are provided by     bear.
+3. If Party B fails to remedy the situation on time or in accordance with the agreed quality standards, or if the data quality standards are still not met after remedy, Party A has the right to deduct the corresponding data fees.
+Article 9 Risk Burden of Data Delivery
+The risk of accidental damage or loss of the subject data due to reasons not attributable to either Party A or Party B , and the risk of data becoming untradeable due to disclosure by a third party , shall be borne by Party B before delivery of the subject data and by Party A after delivery .
+10 Intellectual Property and Trade Secrets
+1. During the performance of this contract, if any product or service (including but not limited to software, databases, information systems, servers, algorithms, models, etc.) involves the intellectual property rights or trade secrets of the parties to this contract or any third party:
+(1) Each party shall ensure that the products or services provided by it do not infringe upon the legitimate rights and interests of any third party .
+( 2 ) Each party shall respect the intellectual property rights and trade secrets of the other party or third-party rights holders in the products or services provided by the other party, and ensure that no act infringes upon the intellectual property rights and trade secrets of the other party or third-party rights holders.
+2. If one party infringes on intellectual property rights or trade secrets , causing losses to the other party or requiring the other party to bear liability for compensation to a third party, the injured party has the right to demand that the infringing party bear the corresponding liability for compensation.
+Article 11 Confidentiality Requirements
+Each party shall disclose any trade secrets (including technical and business information) and other confidential information learned during the contract formation process , such as...            Regardless of whether this contract is established, the information shall not be disclosed or misused until it becomes public information through legal channels .
+12 Data Security Requirements
+1. All parties shall strictly handle the subject data in accordance with the Data Security Law of the People's Republic of China, the Personal Information Protection Law of the People's Republic of China, the Cybersecurity Law of the People's Republic of China, the Regulations on the Administration of Network Data Security, and other applicable laws and regulations.
+2. All parties shall take necessary technical and management measures to ensure data security and prevent data leakage, loss, or unauthorized access . In the event of a data breach or other security incident, the parties shall immediately take remedial measures to mitigate the damage and promptly notify the other party of the details of the incident and the emergency measures taken.
+3. If the provision of the target data involves cross-border transmission, it shall be handled in accordance with the relevant laws, regulations or policies on cross-border data flow , and all parties shall have the obligation to cooperate with each other.
+Thirteen Liability for Breach of Contract
+1. The breaching party shall be liable for continuing to perform the contract and taking remedial measures. If further losses are still caused to the other party after continued performance or remedial measures are taken, the breaching party shall compensate for the losses in accordance with the law .
+2. After one party breaches the contract, the other party shall take appropriate measures to prevent further loss ; if the other party fails to take appropriate measures and the loss increases, the breaching party shall not be liable for compensation for the increased loss. Reasonable expenses incurred by the other party in preventing the loss from increasing shall be borne by the breaching party .
+3. Anyone who discloses or improperly uses trade secrets or confidential information, causing losses to the other party, shall bear the liability for compensation .
+4. If the breaching party is unable to continue performing the contract,                       .
+14 Modification and Termination of the Contract
+1. Both parties agree in writing to supplement, amend, or terminate this contract.
+2. Neither party may assign its rights or obligations under this Agreement to any third party without the other party’s prior written consent.
+3. If the purpose of the contract cannot be achieved due to force majeure, the parties have the right to terminate the contract. A party asserting termination of the contract shall promptly notify the other parties.
+4. Under any of the following circumstances, Party A shall have the right to unilaterally terminate the contract:
+(1) If Party B fails to provide data within the agreed time and fails to fulfill its obligations after being urged by Party A for more than [time period],     One natural day.
+problems with the legality, compliance, and ownership of the target data .
+(3) Others:                                         .
+5. Under any of the following circumstances, Party B shall have the right to unilaterally terminate this contract:
+(1) If Party A fails to pay the fees within the agreed time, and still fails to pay the fees after being urged by Party B, the payment period exceeds [a certain period].     One natural day .
+(2) A breach of contract that results in a major disclosure or misuse of the subject data.
+(3) Others:                                        .
+15 Dispute Resolution
+1. Any dispute , controversy or claim arising out of or relating to this Agreement shall be resolved by the parties through friendly consultation or by entrusting a third party to mediate .
+2. If negotiation or mediation fails, proceed according to the following procedure.     One way to solve it:
+( 1 ) To                                 The People's Court filed a lawsuit.
+( 2 ) To                           The arbitration commission applied for arbitration.
+16 Other Provisions
+signature and seal by both parties and shall remain valid until [date to be filled in].    Year    moon    Stop today .
+2. This contract is made in duplicate.   Each party holds its own share.   Each copy has the same legal effect.
+3. The invalidity or unenforceability of certain clauses in this contract shall not affect the other clauses of the contract.
+4. This Agreement constitutes the complete agreement between the parties regarding the provision and use of data and supersedes all prior oral or written agreements, understandings and communications between the parties . In the event of any inconsistency between the foregoing and the provisions of this Agreement, the provisions of this Agreement shall prevail .
+( Continued on the signature page )
+
+The following is the signature page of this contract; there is no main text. This contract was signed on [Date].      ( Please specify the city)       (Fill in the specific district/county )
+
+Party A:                        (stamp)
+Party B:                        (stamp)
+Legal representative or authorized representative:               
+( Signature/Seal)
+Legal representative or authorized representative:               
+(Signature/Seal)
+     Year     moon     day
+     Year     moon     day
+
+Appendix 1 
+
+Data provides a project acceptance form example
+
+Recipient Name
+
+Provider Name
+
+Project Name
+
+Data provision time
+(Please fill in the specific dates or start and end dates)
+Data received
+( Fill in the receiving method, data content , data size, etc. )
+Acceptance method
+
+Acceptance time
+
+The quantity of the above-mentioned projects delivered has been confirmed to be correct, and the quality meets the contractual agreement.
+Confirmed as correct ( )
+There is an objection ( ). The objection is as follows:                              
+Party A:                     
+(stamp)
+
+( signature )                   
+     Year month day
+Party B:                     
+(stamp)
+
+( signature )                   
+     Date
+
+Appendix 2 
+
+Example of data delivery quality standard requirements
+
+I. Scope of Application
+This annex applies to data delivered by the data provider to the data recipient , serving as a supplement to and specific implementation standard for the " Data Quality Standards " in the main text of the contract.
+II. Quality Dimensions and Indicator Requirements
+1. Data Standardization
+Indicator Item
+Requirements and standards
+Detection methods
+Data format
+Example for reference: Conforms to data format specifications, with a format error rate ≤     %
+Example for reference: The system automatically verifies file format, field type, and encoding standard.
+Naming Conventions
+Example for reference: File names should be named according to the rule " data type_date_version number " , with an error rate of ≤     %
+Example for reference: Regular expression matching and detection
+Metadata completeness
+Example: Metadata includes elements such as data source, generation time, field definitions, and version descriptions, with a completeness ≥ 100%.     %
+Example for reference: Manual sampling inspection of metadata documents
+2. Data Integrity
+Indicator Item
+Requirements and standards
+Completeness rate of required fields
+Example for reference: Core business field missing rate ≤     %
+Data record completeness
+Reference example: Continuity of time series data ≥     % (e.g., daily data without breaks)
+Consistency of related data
+Reference example: Primary and foreign key association matching degree     %
+3. Data accuracy
+Indicator Item
+Requirements and standards
+Logical consistency
+Example for reference: Business rule validation pass rate     % (e.g., non-negative values for amount fields, enumerated values for status fields, etc.)
+Numerical precision
+Reference example: Measurement data should be rounded to the nearest decimal place.     digits, rounding error ≤     %
+Authenticity verification
+Example for reference: Consistency rate of key business data with the source system ≥     %
+4. Data timeliness
+Indicator Item
+Requirements and standards
+Delivery delay
+Reference example: Batch data delivery time error ≤     Hourly, real-time data
+Delay ≤     Seconds (as per contractual agreement)
+Data timeliness
+Reference example: The time deviation between the timestamp and the actual business occurrence time is ≤     minute
+5. Data accessibility
+Indicator Item
+Requirements and standards
+API availability
+Example for reference: 7x24 service availability ≥     %, single response time ≤     ms
+Offline data readability
+Reference example: Storage media read success rate     %, provides MD5 checksum
+6. Data consistency
+Indicator Item
+Requirements and standards
+Internal consistency
+Reference example: Consistency of values ​​for the same field in the same dataset ≥     % ( e.g., consistency of the name of the same user ID across different records)
+Association Consistency
+Example for reference: Cross-dataset association field matching degree ≥     % (e.g., foreign key matching between the order table and the payment table)
+Time Consistency
+Reference example: Continuity of time series data ≥     % (e.g., log timestamps have no breakpoints and no future times)
+Format consistency
+Example for reference: All data conforms to data format specifications, and the format error rate is ≤     %
+ Business rule consistency
+Example for reference: Meets business rule requirements, rule conflict rate ≤     %
+III. Safe Delivery Standards
+1. Transmission security
+Delivery method
+Safety requirements
+Electronic transmission
+Reference example:
+- Use TLS 1.2 or higher encryption protocol
+- level SM3 encryption
+– Two-way SSL certification
+Physical media delivery
+Reference example:
+- Encrypted hard drives must meet the following requirements     standard
+–The entire handover process was recorded on video.
+2. Storage security
+Storage stage
+Safety requirements
+Temporary storage
+Reference example:
+–Data retention period ≤     sky
+– Access log retention ≥     sky
+Long-term storage
+Reference example:
+- Object storage enables WORM (Write Once, Read Many) mode.
+–Off- site redundancy backup
+IV. Acceptance Procedure
+1. Preliminary acceptance
+Party B shall, before formal delivery     The "Data Quality Self-Inspection Report" shall be submitted within [number] working days , and Party A shall conduct sampling verification (sampling ratio ≥ [percentage]).     %).
+2. Formal Acceptance
+(1) Acceptance period: from the date of data delivery     One natural day.
+(2) Acceptance tools: Use verification tools that are mutually agreed upon by both parties.
+(3) Dispute resolution: Difference rate ≤     When the pass rate is % or higher, settlement will be based on the actual pass rate; if the difference rate is greater than %...      The entire batch was returned at % time.
+3. Acceptance documents
+It should include ( see examples: Data Quality Inspection Report, Data Security Transmission Certificate, Metadata Specification) .
+V. Special Data Processing Standards
+Data types
+Additional requirements
+personal information
+Reference example:
+– Anonymization (k-anonymity)
+– Provide proof of compliance with the de-identification algorithm
+Important data
+Reference example:
+- Complete data security risk assessment before delivery
+– Provide a "Data Classification and Grading Report"
+VI. Quality Guarantee Period
+The quality guarantee period is from the date of data delivery .     Months .​
+If quality defects are discovered during the warranty period, Party B shall...     A repair solution will be provided within hours, and in     The repair will be completed within one business day .

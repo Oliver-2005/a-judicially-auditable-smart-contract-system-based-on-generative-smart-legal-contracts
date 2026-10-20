@@ -1,0 +1,285 @@
+GF-2025-2617
+
+Data Fusion Development Contract (Sample Text)
+
+country Home number according to Bureau
+system Certainly
+city field Supervision Tube total Bureau
+
+ July 2025
+
+use illustrate
+
+In accordance with the Civil Code of the People's Republic of China, the Data Security Law of the People's Republic of China, the Personal Information Protection Law of the People's Republic of China, the Cybersecurity Law of the People's Republic of China, the Regulations on the Administration of Network Data Security, and other relevant laws and regulations, in order to safeguard the legitimate rights and interests of the contracting parties, promote data sharing and utilization, facilitate the orderly flow of data, and make it convenient for the contracting parties to use the data, the following explanations are provided:
+I. This contract template is a recommended template and is intended for reference by all parties involved in data fusion development when entering into contracts .
+II . Before entering into this contract, all parties shall carefully read the entire contents of this contract and determine the optional, supplementary, fill-in, and modifyable contents based on the specific circumstances. Handwritten items shall take precedence. □ The parts are for the parties to negotiate and choose. If they agree or choose, mark √ in the blank. If the parties do not agree or choose, mark × in the blank to indicate deletion, and bear the legal consequences arising from the conclusion and performance of the contract .
+Third , all parties may modify, supplement or delete the terms of this contract , but shall not violate the mandatory provisions of laws and administrative regulations, violate public order and good morals, or unfairly and unreasonably increase the buyer's liability, exclude or restrict the buyer's rights or reduce or exempt the seller's liability.
+Fourth , all parties shall carefully and comprehensively verify the transaction parties before the transaction. If a party is a person without civil capacity or with limited civil capacity, the contract shall be signed by the guardian.
+V. In the event of any discrepancy between the handwritten and printed text in this contract and its supplementary clauses, supplementary agreements, and attachments, the handwritten text shall prevail. Similarly , in the event of any discrepancy between Arabic numerals and capitalized numerals, the capitalized numerals shall prevail.
+VI . Matters not covered in this contract may be separately agreed upon by the parties in an appendix, which shall form part of this contract.
+VII . Glossary of Terms :
+( a ) Raw data: refers to data that is generated for the first time or collected at the source and has not been processed.
+( ii ) Result data: refers to data generated in the form of final product services during data processing activities to achieve the purpose of contract delivery.
+( iii ) Data fusion development: refers to the behavior of multiple entities collecting and integrating data from multiple sources to generate new data products or services with application value through business cooperation activities such as providing data products or services or carrying out business management.
+( iv ) Data holding rights: refers to the right of the right holder to hold legally acquired data, either by themselves or by entrusting others to hold it on their behalf. This aims to prevent others from illegally or improperly stealing, altering, disclosing, or destroying the data held by the right holder.
+( v ) Data usage rights: These refer to the rights holder's right to use data for optimizing production and operation, providing social services, or creating derivative data through processing, aggregation, analysis, and other means. Generally speaking, usage rights are the rights holder's right to use data internally without distributing it to external parties.
+( vi ) Data management rights: refers to the right of the right holder to provide data to external parties through paid or unpaid means such as transfer, licensing, investment or establishment of security.
+
+special Don't carry Show
+
+I. This contract is applicable to the act of multiple contracting parties sharing their legally owned original data with each other for the purpose of jointly creating data platforms, data spaces, data pools, derivative data, etc., such as jointly creating artificial intelligence data training zones, industry data sharing and utilization platforms, and alliance-style co-construction of data resource pools.
+II. The contracting parties are the various entities that provide data and assume development and management responsibilities in the data fusion and development activities. The contracting parties providing data are generally multiple entities working towards the same goal, while the contracting parties assuming development and management responsibilities can be one or more of the data providers, or a specific entity specializing in development and management.
+
+Party A ( Party 1 of the Integration) :                                  
+Document type: □ Unified Social Credit Code □ Resident Identity Card □ Passport □ Other       
+ID Number:                                              
+Registered address/domicile:                                       
+Legal Representative:             Authorized Agent:                  
+Contact Person:                 Contact number:                    
+Contact address:                                              
+postal code:                Email address:                    
+
+Party B ( Party 2 in the integration):                                  
+Document type: □ Unified Social Credit Code □ Resident Identity Card □ Passport □ Other       
+ID Number:                                              
+Registered address/domicile:                                       
+Legal Representative:             Authorized Agent:                  
+Contact Person:                 Contact number:                   
+Contact address:                                              
+postal code:               Email address:                    
+
+(Add or delete according to the number of signing parties)
+Party C:                                                  
+Document type: □ Unified Social Credit Code □ Resident Identity Card □ Passport □ Other       
+ID Number:                                              
+Registered address/domicile:                                       
+Legal Representative:             Authorized Agent:                 
+Contact Person:                 Contact number:                    
+Contact address:                                              
+postal code:               Email address:                    
+
+Ding Fang:                                                  
+Document type: □ Unified Social Credit Code □ Resident Identity Card □ Passport □ Other       
+ID Number:                                              
+Registered address/domicile:                                       
+Legal Representative:              Authorized Agent:                  
+Contact Person:                 Contact number:                    
+Contact address:                                              
+postal code:               Email address:                    
+
+Based on the relevant provisions of the Civil Code of the People's Republic of China and other laws and regulations, and adhering to the principles of equality, voluntariness, fairness, and good faith , the parties to this contract have reached a consensus on matters related to data integration and development and hereby enter into this contract.
+First raw data description
+The original data is provided as follows:
+Original Data 1 Name
+
+Data Provider
+
+Data source
+
+Data delivery format
+□ Dataset □ API​  □ Other
+Data provision time
+( Please fill in the specific dates or start and end dates )
+Update frequency
+□ Real-time □ Each     renew  □ No updates/Not applicable
+Original Data 2 Name
+
+Data Provider
+
+Data source
+
+Data delivery format
+□ Dataset □ API​  □ Other
+Data provision time
+( Please fill in the specific dates or start and end dates )
+Update frequency
+□ Real-time □ Every     renew  □ No updates/Not applicable
+Original data 3 name
+
+Data Provider
+
+Data source
+
+Data delivery format
+□ Dataset □ API​  □ Other
+Data provision time
+( Please fill in the specific dates or start and end dates )
+Update frequency
+□ Real-time □ Every     renew  □ No updates/Not applicable
+2 Raw Data Quality Requirements
+1. All parties undertake to provide data in accordance with the following standards ( data quality may be agreed upon with reference to relevant standards in terms of data standardization, completeness, accuracy, consistency, timeliness, and accessibility, or may be specified separately in the contract appendix ) :                 . 
+2. Each party has the right to inspect and test the integrity, accuracy, and other quality of the original data involved in the integrated development and utilization, in accordance with the provisions of this Contract, including but not limited to taking P o C tests on the original data.
+3. Regarding any issues raised by one party, including but not limited to interface access and data quality, the original data provider should...     A response will be provided within one hour. For malfunctions, quality issues, or other problems affecting the normal use of one party, the other party should respond no later than [time missing].     Repairs will be completed within hours, and the contract service period will be extended accordingly.
+3 Restrictions on the Use of Raw Data
+1. The purpose of processing and the limitations on the use of raw data are as follows :
+Data Name
+Specific requirements regarding purpose of use, method of use, and time of use.
+Original Data 1 Name
+
+Original Data 2 Name
+
+...
+
+2. In addition to the above restrictions, all parties using the original data shall also comply with the following requirements :
+(1) When processing and trading personal information, the processor of personal information shall comply with the relevant laws and regulations , as well as the purpose, method and retention period of personal information processing as agreed in the contract .
+( 2) Before providing important data, the processor of important data shall conduct a risk assessment in accordance with the law and comply with the requirements of data security management.
+(3) Other data usage restrictions stipulated by laws and regulations or agreed upon by the parties .
+4 Contribution, Input, and Division of Labor
+1. The division of responsibilities among the parties is agreed as follows:
+Party A
+□ Provide raw data □ Provide algorithm technology □ Provide infrastructure □ Provide development funding □ Provide intellectual property rights □ Other                            
+(Please specify requirements such as performance time and availability)
+Party B
+□ Provide raw data □ Provide algorithm technology □ Provide infrastructure □ Provide development funding □ Provide intellectual property rights □ Other                             
+(Please specify requirements such as performance time and availability)
+Party C
+(If any)
+□ Provide raw data □ Provide algorithm technology □ Provide infrastructure □ Provide development funding □ Provide intellectual property rights □ Other                            
+(Please specify requirements such as performance time and availability)
+2. If one party has one of the following circumstances and has not fulfilled its obligations under the agreement,     If the error is rectified within the specified period, it is presumed that the investment has significant problems , and the party has no right to participate in subsequent commercial profits and equity distribution .
+(1) The quality and integrity of the original data provided were found to be lower than the required level.     or accuracy is lower     .
+(2) Its algorithm performance was tested to be lower than that of other algorithms.                          .
+(3) Its infrastructure availability was found to be lower than that of other infrastructure.                    .
+(4) Delayed payment of funds exceeding     One working day .
+( 5 ) Others:                                        .
+Article 5 Acquisition of Results Data
+1 .     The resulting data from the fusion and development of the original data includes the following:
+Result Data 1 Name
+
+Data content description
+
+Data quality requirements
+
+Result Data 2 Name
+
+Data content description
+
+Data quality requirements
+
+2 .     Fang may use the following:     One way to obtain the result data :
+(1) Electronic delivery
+Online data transmission can be achieved through the following methods :
+□ Cloud storage ;
+Application Programming Interface ( API );
+□ Other cloud storage services :                                .
+(2) Physical delivery
+Offline data delivery can be achieved through the following methods :
+hard drives, optical discs, and USB flash drives ;
+□ Other:                                            . 
+Data pool/data space storage
+□ Stored by     Shared data pool/data space in operation     The party has the following access permissions: ( □ Download and storage □ API call □ Feature-level query □ Restricted access) ;
+□ Stored in a data pool jointly built by all parties.
+Article 6 Rights and Obligations of All Parties
+1. The ownership of the original data and the resulting data by Party A is as follows :
+Data Name
+Data properties
+Types of data property rights
+Scope and limitations of Party A's rights
+(To be filled out by the party concerned)
+Raw data
+□ Data holding rights
+
+□ Data usage rights
+
+□ Data Management Rights
+
+(To be filled out by the party concerned)
+Results data
+□ Data holding rights
+
+□ Data usage rights
+
+□ Data Management Rights
+
+2. The ownership of the original data and result data by Party B is as follows:
+Data Name
+Data properties
+Types of data property rights
+Scope and limitations of Party B's rights
+(To be filled out by the party concerned)
+Raw data
+□ Data holding rights
+
+□ Data usage rights
+
+□ Data Management Rights
+
+(To be filled out by the party concerned)
+Results data
+□ Data holding rights
+
+□ Data usage rights
+
+□ Data Management Rights
+
+3. If the result data is to be registered, then □ by     Registration completed by the parties themselves □ Registration completed by all parties jointly applying.
+4. Any disputes arising between a party and a third party due to the use of data in their own business operations shall be resolved by the respective party and the third party themselves .
+5. Without​     Prior written permission from the other party     The party shall not provide the results data to or allow any unauthorized third party to use it, but             except.
+7 Cost and Benefit Allocation of Results Data
+1. Costs and Expenses
+(1) Storage Costs : The parties agree that the costs incurred from storing the resulting data will be shared by all parties.     The payment method and specific amount of storage fees are as follows:     .
+(2) Technical Costs : If the acquisition of the results data requires the following technical support, it shall be borne by [the relevant party/entity].     Provided by the party, the resulting costs shall be borne by     Fang according to     Standards undertaken ; technical support requirements or parameters :                                        .
+(3) Cost reimbursement : After negotiation,     The parties shall, in accordance with the agreement of all parties,     day
+Forward     Fangpayment     Yuan compensation fee; or     direction     The other party provides the following compensation:                                                  .
+2. Profit Distribution
+(1) Revenue Calculation: Revenue is the balance after deducting costs from income, where income includes:          Costs include:                             .
+(2) Revenue Distribution : Revenue obtained from using the results data through external provision, internal use, etc. , will be distributed according to contribution/agreement, and the specific distribution method is as follows:                                                   .
+Article 8 Data Security Requirements
+1. All parties shall process data in strict accordance with the Data Security Law of the People's Republic of China, the Personal Information Protection Law of the People's Republic of China, the Cybersecurity Law of the People's Republic of China, the Regulations on the Administration of Network Data Security, and other relevant laws and regulations.
+2. All parties shall take necessary technical and management measures to ensure data security and prevent data leakage, loss, or unauthorized access . In the event of a data breach or other security incident, the parties shall immediately take remedial measures to mitigate the damage and promptly notify the other party of the details of the incident and the emergency measures taken.
+3. Where the processing of data under this Contract involves cross-border transfer, it shall be handled in accordance with the relevant laws, regulations or policies on cross-border data flow , and all parties shall have the obligation to cooperate with each other .
+Article 9 Intellectual Property and Trade Secrets
+1. During the performance of this contract, if any product or service (including but not limited to software, databases, information systems, servers, algorithms, models, etc.) involves the intellectual property rights or trade secrets of the parties to this contract or any third party:
+(1) Each party shall ensure that the products or services provided by it do not infringe upon the legitimate rights and interests of any third party.
+(2) Each party shall respect the intellectual property rights and trade secrets of the other party or third-party rights holder in the products or services provided by the other party , and ensure that no act infringes upon the intellectual property rights and trade secrets of the other party or third-party rights holder.
+2. If one party infringes on intellectual property rights or trade secrets, causing losses to the other party or requiring the party to bear liability for compensation to a third party, the injured party has the right to demand that the infringing party bear the corresponding liability for compensation.
+10 Confidentiality Requirements
+The parties shall disclose any trade secrets (including technical and business information) and other confidential information learned during the contract formation process , such as...            Regardless of whether this contract is established, the information shall not be disclosed or misused until it becomes public information through legal channels .
+Article 11 Liability for Breach of Contract
+other party after continued performance or remedial measures are taken, the breaching party shall compensate for the losses in accordance with the law.
+2. After one party breaches the contract, the other party shall take appropriate measures to prevent further loss ; if the other party fails to take appropriate measures and the loss increases, the breaching party shall not be liable for compensation for the increased loss. Reasonable expenses incurred by the other party in preventing the loss from increasing shall be borne by the breaching party .
+3. Anyone who discloses or improperly uses trade secrets or confidential information, causing losses to the other party, shall bear the liability for compensation .
+4. If the breaching party is unable to continue performing the contract,                       .
+12 Modification and Termination of Contract
+1. This contract may be supplemented, amended, or terminated with the written unanimous consent of all parties involved.
+2. Neither party may assign its rights or obligations under this Agreement to any third party without the other party’s prior written consent.
+3. If the purpose of the contract cannot be achieved due to force majeure, the parties have the right to terminate the contract. A party asserting termination of the contract shall promptly notify the other parties.
+4. In any of the following circumstances,     The party has the right to unilaterally terminate the contract:
+problems with the legality, compliance and ownership of the results data .
+(2)     The party failed to perform its main obligations under this contract and, after     If the party fails to fulfill its obligations after being urged to do so, the obligation will be fulfilled for more than [number missing].     One working day .
+(3) Others:                                          .
+5. In any of the following circumstances,     The party has the right to unilaterally terminate this contract:
+(1)     The party violates the contract and causes a major leak or misuse of the results data .
+(2)     The party failed to perform its main obligations under the contract and, after     If the party fails to fulfill its obligations after being urged to do so, the obligation will be fulfilled for more than [number missing].     One working day .
+(3) Others:                                          .
+Thirteen Dispute Resolution
+1. Any dispute , controversy or claim arising out of or relating to this Agreement shall be resolved by the parties through friendly consultation or by entrusting a third party to mediate .
+2. If negotiation or mediation fails, proceed according to the following procedure .     One way to solve it:
+(1) To                                 The People's Court filed a lawsuit.
+(2) To                           The arbitration commission applied for arbitration.
+14 Other Provisions
+1. This contract shall come into effect on the date of signature and seal by all parties and shall remain valid until [date to be filled in].    Year    moon    Stop today.
+2. This contract is made in duplicate.   Each party holds its own share.   Each copy has the same legal effect.
+3. The invalidity or unenforceability of certain clauses in this contract shall not affect the other clauses of the contract.
+4. This Contract constitutes the complete agreement between the parties regarding data integration and development , and supersedes all prior oral or written agreements, understandings and communications between the parties . In the event of any inconsistency between the foregoing and the provisions of this Contract, the provisions of this Contract shall prevail .
+( Continued on the signature page )
+
+The following is the signature page of this contract; there is no main text. This contract was signed on [Date].       ( Please specify the city)           (Fill in the specific district/county )
+
+Party A:                         (stamp)
+Party B:                         (stamp)
+Legal representative or authorized representative:                
+( Signature/Seal)
+Legal representative or authorized representative:                 
+(Signature/Seal)
+     Year     moon     day
+     Year     moon     day
+
+Party C ( if any ) :                         (stamp)
+Party D ( if any ) :                         (stamp)
+Legal representative or authorized representative:                
+( Signature/Seal)
+Legal representative or authorized representative:                 
+(Signature/Seal)
+     Year     moon     day
+     Year     moon     day
